@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: Mason Apps Template Mappings API
+  version: 0.1.0
+  description: Mason (getmason.io / ModeMagic) apps API — harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev.
+servers:
+- url: https://api.getmason.io
+tags:
+- name: Template Mappings
+paths:
+  /api/template/{template_id}:
+    get:
+      tags:
+      - Template Mappings
+      summary: Get Template Mappings
+      description: Get Template Mappings
+      operationId: Get_Template_Mappings_api_v1_genie_template__template_id__get
+      parameters:
+      - description: Template ID
+        required: true
+        schema:
+          type: string
+          title: Template ID
+          description: Template ID
+        name: template_id
+        in: path
+      responses:
+        '200':
+          description: Generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateMappingsResponse'
+              examples:
+                response:
+                  value:
+                    status: 1
+                    url: https://media.kubric.io/api/videos-kubric/image_png_1911414190.png
+        '401':
+          description: Unauthorized call to the API
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    message: Authentication check failed. Please check the Authorization header
+        '422':
+          description: Bad request
+        '500':
+          description: Failure
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    status: -1
+      security:
+      - OAuth2PasswordBearer: []
+components:
+  schemas:
+    TemplateMappingsResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        data:
+          type: object
+          title: Data
+      type: object
+      title: TemplateMappingsResponse
+  securitySchemes:
+    OAuth2PasswordBearer:
+      type: oauth2
+      flows:
+        password:
+          scopes: {}
+          tokenUrl: token

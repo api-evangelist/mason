@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: Mason Apps Create Image API
+  version: 0.1.0
+  description: Mason (getmason.io / ModeMagic) apps API — harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev.
+servers:
+- url: https://api.getmason.io
+tags:
+- name: Create Image
+paths:
+  /api/images:
+    post:
+      tags:
+      - Create Image
+      summary: Generation
+      description: Post generation task. It processes it asynchronously and returns task id to track status
+      operationId: Generation_api_v1_genie_images_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerationModel'
+        required: true
+      responses:
+        '200':
+          description: Generation task response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerationResponse'
+              examples:
+                response:
+                  value:
+                    status: <IN_PROCESS>
+                    task_path: <TASK_PATH>
+        '400':
+          description: Unauthorized call to the API
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    status: error
+                    message: Invalid data
+        '401':
+          description: Unauthorized call to the API
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    message: Authentication check failed. Please check the Authorization header
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - OAuth2PasswordBearer: []
+components:
+  schemas:
+    GenerationResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        uid:
+          type: string
+          title: Uid
+        message:
+          type: string
+          title: Message
+      type: object
+      title: GenerationResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    GenerationModel:
+      properties:
+        base:
+          type: string
+          title: 'template: Template'
+          description: Template ID for generating
+        patch:
+          type: object
+          title: 'patch: Patch'
+          description: Patch in JSON format containing parameters to be used in template for generation
+      type: object
+      required:
+      - base
+      - patch
+      title: GenerationModel
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    OAuth2PasswordBearer:
+      type: oauth2
+      flows:
+        password:
+          scopes: {}
+          tokenUrl: token

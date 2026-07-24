@@ -1,0 +1,342 @@
+openapi: 3.1.0
+info:
+  title: Mason Apps Search API
+  version: 0.1.0
+  description: Mason (getmason.io / ModeMagic) apps API — harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev.
+servers:
+- url: https://api.getmason.io
+tags:
+- name: Search
+paths:
+  /v1/search:
+    get:
+      tags:
+      - Search
+      summary: Asset Search
+      description: Search an asset from the assets store
+      operationId: Asset_Search_v1_search_get
+      parameters:
+      - description: From offset, used in pagination with default value 0
+        required: false
+        schema:
+          type: integer
+          title: From offset
+          description: From offset, used in pagination with default value 0
+          default: 0
+        name: from_
+        in: query
+      - description: Number of result to fetch in search response from the offset. Default is 20 and maximum allowed is 100
+        required: false
+        schema:
+          type: integer
+          title: Page size
+          description: Number of result to fetch in search response from the offset. Default is 20 and maximum allowed is 100
+          default: 20
+        name: size
+        in: query
+      - description: Type of assets to search on like image,video,audio,folder,font,blob
+        required: false
+        schema:
+          type: string
+          title: Asset types
+          description: Type of assets to search on like image,video,audio,folder,font,blob
+          default: image,video,audio,folder,font,blob
+          allowReserved: true
+        name: types
+        in: query
+      - description: Comma separated search filters in terms of field:value pair
+        required: false
+        schema:
+          type: string
+          title: Constraints
+          description: Comma separated search filters in terms of field:value pair
+        name: constraints
+        in: query
+      - description: Filters on custom_attributes.* fields. Input is passed as key value pair separated by ":" and more than one fields are separated by "#$!%#"
+        required: false
+        schema:
+          type: string
+          title: Attributes
+          description: Filters on custom_attributes.* fields. Input is passed as key value pair separated by ":" and more than one fields are separated by "#$!%#"
+        name: attributes
+        in: query
+      - description: Asset search results to be sorted based on. Input is passed as field:order pair separated by ":". More than one fields are separated by "#$!%#"
+        required: false
+        schema:
+          type: string
+          title: Sort by
+          description: Asset search results to be sorted based on. Input is passed as field:order pair separated by ":". More than one fields are separated by "#$!%#"
+        name: sort_by
+        in: query
+      - description: Filters on asset_attributes.* fields. Input is passed as key value pair separated by ":" and more than one fields are separated by "#$!%#"
+        required: false
+        schema:
+          type: string
+          title: Asset attributes
+          description: Filters on asset_attributes.* fields. Input is passed as key value pair separated by ":" and more than one fields are separated by "#$!%#"
+        name: asset_attributes
+        in: query
+      - description: 'Execlude filters on asset_attributes.* fields. Input is passed as key value pair separated by ":" and more than one fields are separated by "#$!%#" '
+        required: false
+        schema:
+          type: string
+          title: Exclude attributes
+          description: 'Execlude filters on asset_attributes.* fields. Input is passed as key value pair separated by ":" and more than one fields are separated by "#$!%#" '
+        name: exclude_attributes
+        in: query
+      - description: Query text to search
+        required: false
+        schema:
+          type: string
+          title: Query
+          description: Query text to search
+        name: query
+        in: query
+      - description: Filter only those result which has asset url in it
+        required: false
+        schema:
+          type: string
+          title: Url filter
+          description: Filter only those result which has asset url in it
+          default: true
+        name: url_filter
+        in: query
+      - description: Whether to search only the query text or attribute values as well
+        required: false
+        schema:
+          type: string
+          title: Exact match
+          description: Whether to search only the query text or attribute values as well
+          default: false
+        name: exact_match
+        in: query
+      - description: Folder path to search assets in
+        required: false
+        schema:
+          type: string
+          title: Path
+          description: Folder path to search assets in
+        name: path
+        in: query
+      - description: Whether to match exact path or not
+        required: false
+        schema:
+          type: string
+          title: Exact path
+          description: Whether to match exact path or not
+          default: false
+        name: exact_path
+        in: query
+      - description: Whether to include hidden assets in the search result or not
+        required: false
+        schema:
+          type: string
+          title: Show hidden
+          description: Whether to include hidden assets in the search result or not
+          default: false
+        name: show_hidden
+        in: query
+      - description: Filter on Asset size in KB
+        required: false
+        schema:
+          type: string
+          title: Filesize threshold
+          description: Filter on Asset size in KB
+        name: filesize_threshold
+        in: query
+      - description: Whether to search on asset only or include folder results as well
+        required: false
+        schema:
+          type: string
+          title: Search all
+          description: Whether to search on asset only or include folder results as well
+          default: false
+        name: search_all
+        in: query
+      - description: Offer text to search on asset_attributes.flag_offer field
+        required: false
+        schema:
+          type: string
+          title: Offer
+          description: Offer text to search on asset_attributes.flag_offer field
+        name: offer
+        in: query
+      - description: Source of the search request for custom search handling
+        required: false
+        schema:
+          type: string
+          title: Source
+          description: Source of the search request for custom search handling
+        name: source
+        in: query
+      responses:
+        '200':
+          description: Asset search result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetSearchResponse'
+              example:
+                total: 1667
+                workspace_id: <workspace if>
+                path_names:
+                - Home
+                path: /root
+                folder_name: Home
+                applied_filters:
+                  failed: false
+                  filters_added:
+                    asset_type:
+                    - image
+                    - video
+                    - audio
+                    - folder
+                    - font
+                    - blob
+                parsed:
+                - key: brand
+                  value: adidas
+                query: adidas
+                hits:
+                - title: Adidas tshirt.jpg
+                  filename: Adidas tshirt.jpg
+                  orientation: landscape
+                  copy_url: <Asset url>
+                  url: <Asset url>
+                  tags:
+                  - Product
+                  - shirt
+                  - Team
+                  - People
+                  - Crowd
+                  - Team sport
+                  - Cheering
+                  - Player
+                  - Fan
+                  - Uniform
+                  id: <Asset id>
+                  user_id: <User id>
+                  asset_type: image
+                  width: 799
+                  height: 768
+                  custom_attributes: []
+                  asset_attributes:
+                  - name: is_logo
+                    value: false
+                  source_website: kubric
+                  download_url: <Storage url>
+                  file_size: 208678
+                  path: /root
+                  shared_with: []
+                  path_names:
+                  - Home
+                  file_type: .jpg
+                  versions:
+                  - blobname: askjakjas-424rn-34jknf3-kjsdcsd.jpg
+                    created_time: '2019-08-02T14:37:35.892935'
+                    id: askjakjas-424rn-34jknf3-kjsdcsd
+                    name: Original Asset
+                    url: <Asset URL>
+                  usage_stats: []
+                  public: true
+                  parent_shared: true
+                  pinned: false
+                  workspace_id: <workspace if>
+                  active_version: askjakjas-424rn-34jknf3-kjsdcsd.jpg
+                  color:
+                    h: 20
+                    s: 25.352112676056336
+                    v: 27.84313725490196
+                    rgb: 473B35
+                  palette:
+                  - 473B35
+                  - CBBDAD
+                  - ACB1AD
+                  - 9C6E4C
+                  - 8C99A4
+                  created_time: '2014-08-09T16:30:06.000Z'
+        '401':
+          description: Unauthorized call to the API
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - OAuth2PasswordBearer: []
+components:
+  schemas:
+    AssetSearchResponse:
+      properties:
+        total:
+          type: integer
+          title: Total
+        workspace_id:
+          type: string
+          title: Workspace Id
+        path_names:
+          items: {}
+          type: array
+          title: Path Names
+        path:
+          type: string
+          title: Path
+        folder_name:
+          type: string
+          title: Folder Name
+        applied_filters:
+          type: object
+          title: Applied Filters
+        parsed:
+          items: {}
+          type: array
+          title: Parsed
+        query:
+          type: string
+          title: Query
+        hits:
+          items: {}
+          type: array
+          title: Hits
+      type: object
+      required:
+      - workspace_id
+      title: AssetSearchResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    OAuth2PasswordBearer:
+      type: oauth2
+      flows:
+        password:
+          scopes: {}
+          tokenUrl: token
