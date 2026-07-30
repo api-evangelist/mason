@@ -1,8 +1,31 @@
 aid: mason
 name: Mason
-description: 'Mason is a company surfaced as a portfolio company of accel, ggv-capital, point-nine, y-combinator
-  and added to the API Evangelist network as a stub for enrichment. Sector: ecommerce. This profile is
-  a lead awaiting the enrichment pipeline.'
+description: >-
+  Mason (getmason.io), the company behind the ModeMagic Shopify app, is an
+  AI-powered "agentic shopping engine" for ecommerce brands. Built by Kubric, the
+  platform pairs merchandising, promotion, conversion and gamification AI agents
+  with a developer platform for programmatic creative generation and commerce
+  automation. Its public developer hub at getmason.dev documents a REST API
+  (OAuth2 bearer, base host https://api.getmason.io) spanning app provisioning,
+  template-driven image/creative generation (Genie), long-running creative tasks,
+  asset search, webhook subscriptions, and a promotion/discount engine (Scrooge)
+  for tiered, bulk and Buy-X-Get-Y discounts, plus a custom-checkout integration
+  contract. Surfaced as a portfolio company of Accel, GGV Capital, Point Nine and
+  Y Combinator; this profile was enriched by the API Evangelist pipeline from
+  Mason's published OpenAPI, llms.txt and developer documentation.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://media.getmason.io/api/assetlib/e5067013-1809-44f3-8847-8d66857625c7.png
 url: https://raw.githubusercontent.com/api-evangelist/mason/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,20 +34,169 @@ x-backed-by:
 - ggv-capital
 - point-nine
 - y-combinator
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: has-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 31
+  pass: local-v1
 tags:
 - Company
 - Ecommerce
-apis: []
+- Commerce
+- AI
+- Agents
+- Content Generation
+- Discounts
+- Promotions
+- Webhooks
+- Shopify
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: mason:mason-apps-api
+  name: Mason Apps API
+  description: The Apps API from Mason — 2 operation(s) for apps.
+  humanURL: https://www.getmason.dev/reference
+  baseURL: https://api.getmason.io
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/mason-apps-api-openapi.yml
+- aid: mason:mason-create-image-api
+  name: Mason Create Image API
+  description: The Create Image API from Mason — 1 operation(s) for create image.
+  humanURL: https://www.getmason.dev/reference
+  baseURL: https://api.getmason.io
+  tags:
+  - Create Image
+  properties:
+  - type: OpenAPI
+    url: openapi/mason-create-image-api-openapi.yml
+- aid: mason:mason-images-api
+  name: Mason Images API
+  description: The Images API from Mason — 2 operation(s) for images.
+  humanURL: https://www.getmason.dev/reference
+  baseURL: https://api.getmason.io
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/mason-images-api-openapi.yml
+- aid: mason:mason-retrieve-an-image-api
+  name: Mason Retrieve an Image API
+  description: The Retrieve an Image API from Mason — 1 operation(s) for retrieve an image.
+  humanURL: https://www.getmason.dev/reference
+  baseURL: https://api.getmason.io
+  tags:
+  - Retrieve an Image
+  properties:
+  - type: OpenAPI
+    url: openapi/mason-retrieve-an-image-api-openapi.yml
+- aid: mason:mason-search-api
+  name: Mason Search API
+  description: The Search API from Mason — 1 operation(s) for search.
+  humanURL: https://www.getmason.dev/reference
+  baseURL: https://api.getmason.io
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/mason-search-api-openapi.yml
+- aid: mason:mason-template-mappings-api
+  name: Mason Template Mappings API
+  description: The Template Mappings API from Mason — 1 operation(s) for template mappings.
+  humanURL: https://www.getmason.dev/reference
+  baseURL: https://api.getmason.io
+  tags:
+  - Template Mappings
+  properties:
+  - type: OpenAPI
+    url: openapi/mason-template-mappings-api-openapi.yml
+- aid: mason:mason-tiered-discounts-api
+  name: Mason Tiered Discounts API
+  description: The Tiered Discounts API from Mason — 4 operation(s) for tiered discounts.
+  humanURL: https://www.getmason.dev/reference
+  baseURL: https://api.getmason.io
+  tags:
+  - Tiered Discounts
+  properties:
+  - type: OpenAPI
+    url: openapi/mason-tiered-discounts-api-openapi.yml
+- aid: mason:mason-webhooks-api
+  name: Mason Webhooks API
+  description: The Webhooks API from Mason — 2 operation(s) for webhooks.
+  humanURL: https://www.getmason.dev/reference
+  baseURL: https://api.getmason.io
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/mason-webhooks-api-openapi.yml
 common:
+- type: VulnerabilityDisclosure
+  url: security/mason-vulnerability-disclosure.yml
+- type: Security
+  url: https://getmason.io/security/
+- type: DomainSecurity
+  url: security/mason-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/mason-agentic-access.yml
+- type: OAuthScopes
+  url: scopes/mason-scopes.yml
+- type: Authentication
+  url: authentication/mason-authentication.yml
 - type: Website
   url: https://getmason.io/
+- type: DeveloperPortal
+  url: https://www.getmason.dev/
+- type: Documentation
+  url: https://www.getmason.dev/
+- type: APIReference
+  url: https://www.getmason.dev/reference
+- type: GettingStarted
+  url: https://www.getmason.dev/docs/getting-to-know-mason
+- type: ChangeLog
+  url: https://www.getmason.dev/changelog
+- type: Blog
+  url: https://getmason.io/feed/
+- type: Pricing
+  url: https://getmason.io/pricing/
+- type: Login
+  url: https://app.getmason.io/login
+- type: TermsOfService
+  url: https://getmason.io/termsofuse/
+- type: PrivacyPolicy
+  url: https://getmason.io/privacypolicy/
+- type: GitHubOrganization
+  url: https://github.com/kubric
+- type: LLMsTxt
+  url: llms/mason-llms.txt
+- type: ErrorCatalog
+  url: errors/mason-problem-types.yml
+- type: Conventions
+  url: conventions/mason-conventions.yml
+- type: DataModel
+  url: data-model/mason-data-model.yml
+- type: Webhooks
+  url: asyncapi/mason-webhooks.yml
+- type: MCPServer
+  url: mcp/mason-mcp.yml
+- type: Conformance
+  url: conformance/mason-conformance.yml
+- type: WellKnown
+  url: well-known/mason-well-known.yml
+- type: Lifecycle
+  url: lifecycle/mason-lifecycle.yml
+- type: ChangeLog
+  url: changelog/mason-changelog.yml
+- type: AgentSkill
+  url: skills/_index.yml
