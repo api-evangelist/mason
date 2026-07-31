@@ -1,0 +1,59 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: >-
+  No official hosted or local Model Context Protocol server was found for Mason
+  (searched getmason.dev docs, npm @modelcontextprotocol, and the developer hub).
+  This is a CANDIDATE tool list derived one-to-one from the operations in
+  ../openapi/*.json, to be replaced if Mason publishes an official MCP server.
+server:
+  name: mason
+  transport: http
+  base_url: https://api.getmason.io
+  auth: oauth2 (OAuth2PasswordBearer bearer token)
+tools:
+  - name: create_app
+    description: Create a Mason app for the team.
+    source_operation: openapi/mason-apps-openapi.json#Create_an_app_v1_app_post
+  - name: get_app
+    description: Retrieve the team's Mason app.
+    source_operation: openapi/mason-apps-openapi.json#Get_app_v1_app_get
+  - name: delete_app
+    description: Delete a Mason app.
+    source_operation: openapi/mason-apps-openapi.json#Delete_app_v1_app__app_id__delete
+  - name: generate_image
+    description: Generate an image from a template (long-running).
+    source_operation: openapi/mason-generation-openapi.json#Generation_api_v1_genie_images_post
+  - name: get_image
+    description: Retrieve a generated image by uid.
+    source_operation: openapi/mason-generation-openapi.json#Get_Image_api_v1_genie_images__uid__get
+  - name: get_template_mappings
+    description: Read the field mappings for a template.
+    source_operation: openapi/mason-generation-openapi.json#Get_Template_Mappings_api_v1_genie_template__template_id__get
+  - name: create_creative_task
+    description: Submit a creative generation task.
+    source_operation: openapi/mason-tasks-openapi.json#Creative_task_v1_task_creative_post
+  - name: get_creative_task_status
+    description: Poll the status of a creative task.
+    source_operation: openapi/mason-tasks-openapi.json#Creative_task_status_v1_creative_status_post
+  - name: search_assets
+    description: Search brand assets, product catalog and content.
+    source_operation: openapi/mason-search-openapi.json#Asset_Search_v1_search_get
+  - name: register_webhook
+    description: Register a webhook subscription for an event type.
+    source_operation: openapi/mason-webhooks-openapi.json#Register_a_Webhook_v1_webhook_post
+  - name: list_webhooks
+    description: List registered webhooks.
+    source_operation: openapi/mason-webhooks-openapi.json#Get_Webhook_v1_webhook_get
+  - name: delete_webhook
+    description: Delete a webhook subscription.
+    source_operation: openapi/mason-webhooks-openapi.json#Delete_Webhook_v1_webhook__id__delete
+  - name: create_bulk_discounts
+    description: Create tiered, timed, BxGy and custom discounts in bulk for a store.
+    source_operation: openapi/mason-discounts-openapi.json#create_bulk_discounts_api_v1_scrooge_discounts_bulk_put
+  - name: create_tiered_discounts
+    description: Create tiered discounts for a store.
+    source_operation: openapi/mason-discounts-openapi.json#create_tiered_discounts_api_v1_scrooge_tiered_discounts_put
+  - name: cleanup_discounts
+    description: Delete/clean up bulk or tiered discounts.
+    source_operation: openapi/mason-discounts-openapi.json#cleanup_tiered_discounts_api_v1_scrooge_discounts_bulk_delete_put

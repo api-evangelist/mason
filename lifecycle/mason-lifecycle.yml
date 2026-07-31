@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://www.getmason.dev/reference, https://www.getmason.dev/changelog, and the
+  harvested OpenAPI (../openapi/*.json). Mason publishes a developer changelog but
+  no dedicated versioning-policy, deprecation-policy, SLA, or status page were
+  found; absence is recorded honestly (no StatusPage/Deprecation pointer emitted).
+versioning:
+  scheme: uri-path
+  observed_prefixes: ['/v1', '/api/v1', '/api']
+  header: null
+  docs: https://www.getmason.dev/reference
+  notes: The API version is carried in the URL path; no version header is documented.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is
+    documented. The Custom Checkout guide marks an OLDER post-message contract as
+    "Deprecated", but there is no API-wide deprecation policy page.
+sla:
+  url: null
+  public_uptime_target: null
+status_page: null
+changelog: https://www.getmason.dev/changelog
+deprecated_operations: []

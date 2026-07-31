@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for Mason's hosts
+  (getmason.io, www.getmason.dev, app.getmason.io) and the OpenAPI base host
+  (api.getmason.io). No real, correctly-typed discovery document was found:
+  getmason.io and getmason.dev return 404 for every probed path; app.getmason.io
+  answers 200 with the same SPA login shell for every path (soft 404), so nothing
+  was saved verbatim.
+hosts:
+  - host: https://getmason.io
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://www.getmason.dev
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://app.getmason.io
+    documents:
+      - {path: /.well-known/security.txt, status: 200, note: SPA login shell (text/html), not a real security.txt}
+      - {path: /.well-known/openid-configuration, status: 200, note: SPA login shell, not OIDC discovery JSON}
+      - {path: /.well-known/oauth-authorization-server, status: 200, note: SPA login shell, not RFC 8414 JSON}
+      - {path: /.well-known/api-catalog, status: 200, note: SPA login shell, not an API catalog}
+      - {path: /.well-known/ai-plugin.json, status: 200, note: SPA login shell, not a plugin manifest}

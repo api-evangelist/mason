@@ -1,0 +1,64 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  Derived from schema $ref links and id-reference fields across Mason's OpenAPI
+  (../openapi/*.json). Entity id-prefixes/domains are not published in the object
+  reference, so only relationships evidenced by the specs are asserted.
+description: >-
+  Entity-relationship view of Mason's API domain: apps/plugins, creative tasks
+  and generated images, discounts, assets (search) and webhooks.
+entities:
+  - name: App (Plugin)
+    api: openapi/mason-apps-openapi.json
+    schemas: [PluginRegistrationModel, RegisterPluginResponse, GetPluginResponse, DeletePluginResponse]
+    key: app_id
+    notes: A team can create only one app (per the Create An App reference).
+  - name: CreativeTask
+    api: openapi/mason-tasks-openapi.json
+    schemas: [CreativeTaskModel, CreativeTaskResponse, CreativeTaskStatusModel, CreativeTaskStatusData, CreativeTaskStatusResponse]
+    key: task_id
+    notes: Long-running; created via /v1/task/creative, polled via /v1/creative/status.
+  - name: Generation (Image)
+    api: openapi/mason-generation-openapi.json
+    schemas: [GenerationModel, GenerationResponse, GenerationStatusResponse, TemplateMappingsResponse]
+    key: uid
+    notes: Generated from a template; retrieved by uid; long-running.
+  - name: Template
+    api: openapi/mason-generation-openapi.json
+    schemas: [TemplateMappingsResponse]
+    key: template_id
+  - name: Discount
+    api: openapi/mason-discounts-openapi.json
+    schemas: [TieredDiscountModel, BxGyDiscountModel, TimedDiscountModel, CustomBxGyDiscountModel, DiscountValue]
+    key: uid / discount_id
+    scoped_by: store
+    notes: Applies to products/variants and collections.
+  - name: Asset
+    api: openapi/mason-search-openapi.json
+    schemas: [AssetSearchResponse]
+    notes: Brand assets / product catalog / content, searchable.
+  - name: Webhook
+    api: openapi/mason-webhooks-openapi.json
+    schemas: [WebhookRegistrationModel, ChannelDetails, RegisterWebhookResponse, GetWebhookResponse]
+    key: id
+relationships:
+  - from: Generation
+    to: Template
+    type: belongs_to
+    via: template_id
+  - from: Discount
+    to: Product
+    type: has_many
+    via: buy[].id / variants
+  - from: Discount
+    to: Collection
+    type: has_many
+    via: applies_to.collections
+  - from: Webhook
+    to: Event
+    type: belongs_to
+    via: event_type
+  - from: CreativeTask
+    to: Generation
+    type: has_many
+    via: task -> generated images

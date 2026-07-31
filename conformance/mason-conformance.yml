@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  Derived from Mason's OpenAPI (../openapi/*.json) and developer docs at
+  getmason.dev. No published compliance/certification program (SOC 2, ISO 27001,
+  PCI, HIPAA, FedRAMP) was found, so no Compliance pointer is emitted.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: openapi securityScheme OAuth2PasswordBearer (type oauth2, password flow)
+  - id: oidc
+    conforms: false
+    evidence: no openIdConnect scheme or discovery document
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors use FastAPI application/json {detail:[...]} (HTTPValidationError), not application/problem+json
+  - id: json-api
+    conforms: false
+  - id: openapi-3.1
+    conforms: true
+    evidence: all harvested specs declare openapi 3.1.0
+  - id: webhooks
+    conforms: true
+    evidence: webhook subscription management API (/v1/webhook)
+  - id: pagination
+    conforms: true
+    evidence: offset pagination (from_/size) on GET /v1/search

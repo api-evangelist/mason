@@ -1,0 +1,28 @@
+{
+  "provider": "mason",
+  "sources": [
+    "mason-apps-api-openapi.yml",
+    "mason-create-image-api-openapi.yml",
+    "mason-images-api-openapi.yml",
+    "mason-retrieve-an-image-api-openapi.yml",
+    "mason-search-api-openapi.yml",
+    "mason-template-mappings-api-openapi.yml",
+    "mason-tiered-discounts-api-openapi.yml",
+    "mason-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "mason-apps-api-openapi.yml",
+    "mason-create-image-api-openapi.yml",
+    "mason-images-api-openapi.yml",
+    "mason-retrieve-an-image-api-openapi.yml",
+    "mason-search-api-openapi.yml",
+    "mason-template-mappings-api-openapi.yml",
+    "mason-tiered-discounts-api-openapi.yml",
+    "mason-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

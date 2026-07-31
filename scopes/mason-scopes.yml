@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mason-apps-openapi.json, openapi/mason-generation-openapi.json, openapi/mason-search-openapi.json,
+  openapi/mason-webhooks-openapi.json
+schemes:
+- name: OAuth2PasswordBearer
+  source: openapi/mason-apps-openapi.json
+  flows:
+  - flow: password
+    tokenUrl: token
+- name: OAuth2PasswordBearer
+  source: openapi/mason-generation-openapi.json
+  flows:
+  - flow: password
+    tokenUrl: token
+- name: OAuth2PasswordBearer
+  source: openapi/mason-search-openapi.json
+  flows:
+  - flow: password
+    tokenUrl: token
+- name: OAuth2PasswordBearer
+  source: openapi/mason-webhooks-openapi.json
+  flows:
+  - flow: password
+    tokenUrl: token
+scopes: []

@@ -1,0 +1,386 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Mason Apps API",
+    "version": "0.1.0",
+    "description": "Mason (getmason.io / ModeMagic) apps API \u2014 harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev."
+  },
+  "servers": [
+    {
+      "url": "https://api.getmason.io"
+    }
+  ],
+  "paths": {
+    "/v1/app": {
+      "post": {
+        "tags": [
+          "Apps"
+        ],
+        "summary": "Create An App",
+        "description": "A team can create only one app (for now)",
+        "operationId": "Create_an_app_v1_app_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PluginRegistrationModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Register plugin response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterPluginResponse"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "id": "<>"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized call to the API"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Apps"
+        ],
+        "summary": "Get App",
+        "description": "Get registered app details",
+        "operationId": "Get_app_v1_app_get",
+        "parameters": [
+          {
+            "description": "ID of the app",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "App ID",
+              "description": "ID of the app"
+            },
+            "name": "app_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "App details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GetPluginResponse"
+                  },
+                  "type": "array",
+                  "title": "Response Get App V1 App Get"
+                },
+                "examples": {
+                  "response": {
+                    "value": [
+                      {
+                        "id": "<>",
+                        "name": "<>",
+                        "icon": "<>",
+                        "display_name": "<>"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized call to the API"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/app/{app_id}": {
+      "delete": {
+        "tags": [
+          "Apps"
+        ],
+        "summary": "Delete App",
+        "description": "Delete an app",
+        "operationId": "Delete_app_v1_app__app_id__delete",
+        "parameters": [
+          {
+            "description": "app to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "App Id",
+              "description": "app to be deleted"
+            },
+            "name": "app_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete webhook response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletePluginResponse"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "status": "success",
+                      "message": "successfully deleted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "value": {
+                      "status": "failure",
+                      "message": "failed to delete"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized call to the API",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "value": {
+                      "message": "Authentication check failed. Please check the Authorization header"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PluginRegistrationModel": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "name",
+            "description": "name of the app"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "display name",
+            "description": "Display name (case sensitive)"
+          },
+          "icon": {
+            "type": "string",
+            "title": "icon",
+            "description": "Icon to be displayed on the App"
+          },
+          "app_type": {
+            "type": "string",
+            "title": "App Type",
+            "description": "App Type",
+            "default": "checkout"
+          },
+          "verify_merchant": {
+            "type": "string",
+            "title": "Verify Merchant",
+            "description": "URL to verify merchant"
+          },
+          "create_checkout": {
+            "type": "string",
+            "title": "Create Checkout",
+            "description": "URL to create checkout"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "display_name",
+          "icon",
+          "verify_merchant",
+          "create_checkout"
+        ],
+        "title": "PluginRegistrationModel"
+      },
+      "RegisterPluginResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "RegisterPluginResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "GetPluginResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "icon",
+          "display_name"
+        ],
+        "title": "GetPluginResponse"
+      },
+      "DeletePluginResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "title": "DeletePluginResponse"
+      }
+    },
+    "securitySchemes": {
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {},
+            "tokenUrl": "token"
+          }
+        }
+      }
+    }
+  }
+}

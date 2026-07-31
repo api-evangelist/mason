@@ -1,0 +1,422 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Mason Webhooks API",
+    "version": "0.1.0",
+    "description": "Mason (getmason.io / ModeMagic) webhooks API \u2014 harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev."
+  },
+  "servers": [
+    {
+      "url": "https://api.getmason.io"
+    }
+  ],
+  "paths": {
+    "/v1/webhook": {
+      "post": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Register A Webhook",
+        "description": "Register a webhook. Webhooks are supported at workspace level",
+        "operationId": "Register_a_Webhook_v1_webhook_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookRegistrationModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Register webhook response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterWebhookResponse"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "id": "<>"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized call to the API"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Get Webhook",
+        "description": "Get all the registered webhooks",
+        "operationId": "Get_Webhook_v1_webhook_get",
+        "parameters": [
+          {
+            "description": "Webhook id",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Webhook id",
+              "description": "Webhook id"
+            },
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "description": "Event type on which notifications are triggered to the webhook",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "event_type",
+              "description": "Event type on which notifications are triggered to the webhook"
+            },
+            "name": "event_type",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get webhook response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GetWebhookResponse"
+                  },
+                  "type": "array",
+                  "title": "Response Get Webhook V1 Webhook Get"
+                },
+                "examples": {
+                  "response": {
+                    "value": [
+                      {
+                        "id": "<>",
+                        "channel_details": {
+                          "url": "<>",
+                          "headers": "<>"
+                        },
+                        "event_type": "<>"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized call to the API"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/webhook/{id}": {
+      "delete": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Delete Webhook",
+        "description": "Delete a webhook",
+        "operationId": "Delete_Webhook_v1_webhook__id__delete",
+        "parameters": [
+          {
+            "description": "Id of webhook to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Webhook Id",
+              "description": "Id of webhook to be deleted"
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete webhook response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteWebhookResponse"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "status": "success",
+                      "message": "successfully deleted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized call to the API",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "value": {
+                      "message": "Authentication check failed. Please check the Authorization header"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChannelDetails": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "url"
+          },
+          "headers": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "headers",
+            "default": {
+              "Content-Type": "application/json"
+            }
+          },
+          "method": {
+            "type": "string",
+            "title": "method",
+            "default": "POST"
+          },
+          "source_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "source_fields"
+          },
+          "success_codes": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "success_codes",
+            "default": [
+              200
+            ]
+          },
+          "fallback": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {},
+                  "type": "array"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "fallback"
+          },
+          "timeout": {
+            "type": "integer",
+            "title": "timeout"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "title": "ChannelDetails"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "RegisterWebhookResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "RegisterWebhookResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "WebhookRegistrationModel": {
+        "properties": {
+          "channel_details": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelDetails"
+              }
+            ],
+            "title": "channel_details",
+            "description": "Dictionary containing url, headers and other fields required for sending notification."
+          },
+          "event_type": {
+            "type": "string",
+            "title": "event_type",
+            "description": "Event Type for which notification will be sent on this webhook"
+          }
+        },
+        "type": "object",
+        "required": [
+          "channel_details",
+          "event_type"
+        ],
+        "title": "WebhookRegistrationModel"
+      },
+      "GetWebhookResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "channel_details": {
+            "$ref": "#/components/schemas/ChannelDetails"
+          },
+          "event_type": {
+            "type": "string",
+            "title": "Event Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "channel_details",
+          "event_type"
+        ],
+        "title": "GetWebhookResponse"
+      },
+      "DeleteWebhookResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "title": "DeleteWebhookResponse"
+      }
+    },
+    "securitySchemes": {
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {},
+            "tokenUrl": "token"
+          }
+        }
+      }
+    }
+  }
+}

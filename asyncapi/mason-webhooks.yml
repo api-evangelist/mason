@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://www.getmason.dev/reference — Mason Webhooks API (Register/Get/Delete a
+  Webhook), harvested from the provider's OpenAPI at openapi/mason-webhooks-openapi.json.
+spec_type: Webhooks
+description: >-
+  Mason exposes a webhook-subscription management API rather than a published
+  AsyncAPI document. Consumers register HTTP callback channels to listen for
+  changes/updates; Mason POSTs to the registered channel url when the subscribed
+  event_type fires. No enumerated event catalog is published (event_type is a
+  free-form string in the OpenAPI), so specific event names are not asserted here.
+management_api:
+  register:
+    operation: openapi/mason-webhooks-openapi.json#Register_a_Webhook_v1_webhook_post
+    method: POST
+    path: /v1/webhook
+    request:
+      event_type: string  # the event to subscribe to
+      channel_details:
+        url: string        # required — callback target
+        method: string     # HTTP method used for delivery
+        headers: object    # custom headers sent with delivery
+        source_fields: array
+        success_codes: array   # status codes treated as successful delivery
+        fallback: object
+        timeout: integer
+  list:
+    operation: openapi/mason-webhooks-openapi.json#Get_Webhook_v1_webhook_get
+    method: GET
+    path: /v1/webhook
+    query: [id, event_type]
+  delete:
+    operation: openapi/mason-webhooks-openapi.json#Delete_Webhook_v1_webhook__id__delete
+    method: DELETE
+    path: /v1/webhook/{id}
+delivery:
+  transport: HTTP callback to the registered channel url
+  retries: fallback channel + success_codes negotiation per registration
+notes: >-
+  event_type values are defined by the subscribing integration and Mason's event
+  producers; the public reference does not enumerate them. Capture emitted as
+  type Webhooks (satisfies the webhook/asyncapi_events scoring family); no
+  AsyncAPI document is published by the provider.

@@ -1,0 +1,435 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Mason Tasks API",
+    "version": "0.1.0",
+    "description": "Mason (getmason.io / ModeMagic) tasks API \u2014 harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev."
+  },
+  "servers": [
+    {
+      "url": "https://api.getmason.io"
+    }
+  ],
+  "paths": {
+    "/v1/task/creative": {
+      "post": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "Creative Task",
+        "description": "Post creative generation task. It receives creative task creation requests and processes them asynchronously and returns batch id of the task",
+        "operationId": "Creative_task_v1_task_creative_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreativeTaskModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Creative generation task response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreativeTaskResponse"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "status": "<IN_PROCESS>",
+                      "batch_id": "<batch_id>",
+                      "duplicate_tasks": {
+                        "count": 2,
+                        "ids": [
+                          {
+                            "task_id": "task1",
+                            "batch_id": "<>"
+                          },
+                          {
+                            "task_id": "task2",
+                            "batch_id": "<>"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unauthorized call to the API",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "value": {
+                      "status": "error",
+                      "message": "task_id is not present in one or more creative data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized call to the API",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "value": {
+                      "status": "error",
+                      "message": "Authentication check failed. Please check the Authorization header"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/creative/status": {
+      "post": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "Creative Task Status",
+        "description": "Get creative generation task status",
+        "operationId": "Creative_task_status_v1_creative_status_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreativeTaskStatusModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Creative generation task status response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreativeTaskStatusResponse"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "count": 1,
+                      "result": [
+                        {
+                          "status": "<IN_PROCESS/APPROVED/REJECTED>",
+                          "creative_url": "<>",
+                          "batch_id": "<>",
+                          "task_id": "<>",
+                          "rejection_reason": "<>",
+                          "input_data": {
+                            "image": "<>",
+                            "imageDesc": "<string describing img>",
+                            "logo": "<brand logo>",
+                            "widgetType": "<>",
+                            "discountType": "percentage",
+                            "discountValue": 20,
+                            "couponCode": "<>",
+                            "cityIds": [
+                              1,
+                              2,
+                              3
+                            ],
+                            "copyDescription": "20 % off",
+                            "bannerType": "<>"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unauthorized call to the API",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "value": {
+                      "status": "error",
+                      "message": "batch_id not present in the request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized call to the API",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "response": {
+                    "value": {
+                      "status": "error",
+                      "message": "Authentication check failed. Please check the Authorization header"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreativeTaskModel": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "count: Count",
+            "description": "Total number of creative sent in the data json"
+          },
+          "data": {
+            "items": {},
+            "type": "array",
+            "title": "data: Data",
+            "description": "List of creative input object"
+          }
+        },
+        "type": "object",
+        "required": [
+          "count",
+          "data"
+        ],
+        "title": "CreativeTaskModel"
+      },
+      "CreativeTaskResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "batch_id": {
+            "type": "string",
+            "title": "Batch Id"
+          },
+          "duplicate_tasks": {
+            "$ref": "#/components/schemas/DuplicateTaskIdResponse"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "title": "CreativeTaskResponse"
+      },
+      "DuplicateTaskIdResponse": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "ids": {
+            "items": {
+              "$ref": "#/components/schemas/DuplicateTaskIds"
+            },
+            "type": "array",
+            "title": "Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "count",
+          "ids"
+        ],
+        "title": "DuplicateTaskIdResponse"
+      },
+      "DuplicateTaskIds": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "batch_id": {
+            "type": "string",
+            "title": "Batch Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "task_id",
+          "batch_id"
+        ],
+        "title": "DuplicateTaskIds"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "CreativeTaskStatusData": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "creative_url": {
+            "type": "string",
+            "title": "Creative Url"
+          },
+          "batch_id": {
+            "type": "string",
+            "title": "Batch Id"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "input_data": {
+            "type": "object",
+            "title": "Input Data"
+          },
+          "rejection_reason": {
+            "type": "string",
+            "title": "Rejection Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "creative_url",
+          "batch_id",
+          "task_id",
+          "rejection_reason"
+        ],
+        "title": "CreativeTaskStatusData"
+      },
+      "CreativeTaskStatusModel": {
+        "properties": {
+          "batch_id": {
+            "type": "string",
+            "title": "batch_id: Batch Id",
+            "description": "Batch Id of the task"
+          },
+          "task_ids": {
+            "items": {},
+            "type": "array",
+            "title": "task_ids: Task ids",
+            "description": "List of task ids to filter tasks from a batch"
+          },
+          "statuses": {
+            "items": {},
+            "type": "array",
+            "title": "statuses: Statuses",
+            "description": "List of statuses to filter tasks from a batch"
+          },
+          "input_attributes": {
+            "type": "object",
+            "title": "input_attributes: Input attributes map",
+            "description": "Input attributes map passed as an object of key, value pair to filter creative from from a batch"
+          },
+          "source_fields": {
+            "items": {},
+            "type": "array",
+            "title": "source_fields: Source Fields",
+            "description": "List of input_data fields to get in response. If not passed or null then response will have all the input_data fields. If it is set to empty list, then response will not have any input_data field. And if it has a list of fields then only those fields from input data will be returned in response."
+          }
+        },
+        "type": "object",
+        "required": [
+          "batch_id"
+        ],
+        "title": "CreativeTaskStatusModel"
+      },
+      "CreativeTaskStatusResponse": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "default": 0
+          },
+          "result": {
+            "items": {
+              "$ref": "#/components/schemas/CreativeTaskStatusData"
+            },
+            "type": "array",
+            "title": "Result"
+          }
+        },
+        "type": "object",
+        "title": "CreativeTaskStatusResponse"
+      }
+    }
+  }
+}

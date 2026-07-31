@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Mason Apps API
+  version: 1.0.0
+extends: openapi/mason-apps-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 3
+      x-apievangelist-source: >-
+        Harvested verbatim from Mason's ReadMe-hosted OpenAPI at getmason.dev
+        (base host https://api.getmason.io). Enrichment adds cross-cutting
+        conventions, error, data-model and webhook artifacts alongside this spec.
+      x-apievangelist-artifacts:
+        conventions: conventions/mason-conventions.yml
+        errors: errors/mason-problem-types.yml
+        authentication: authentication/mason-authentication.yml
+        data_model: data-model/mason-data-model.yml

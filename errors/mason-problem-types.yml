@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  Derived from the 4xx/5xx responses across every Mason OpenAPI in ../openapi/*.json
+  (harvested verbatim from the provider's ReadMe-hosted FastAPI OpenAPI at
+  getmason.dev). Mason's API is FastAPI-generated: validation failures return a
+  422 with an application/json body of shape {"detail": [ {loc, msg, type} ]}
+  (HTTPValidationError). It does NOT use RFC 9457 application/problem+json.
+format: fastapi-http-detail
+envelope:
+  media_type: application/json
+  shape: '{ "detail": [ { "loc": [...], "msg": "...", "type": "..." } ] }'
+  schema: HTTPValidationError / ValidationError
+problems:
+  - status: 400
+    title: Bad Request
+    meaning: Invalid store, payload, or request the server could not process.
+    source_operations:
+      - openapi/mason-apps-openapi.json#Delete_app_v1_app__app_id__delete
+      - openapi/mason-generation-openapi.json#Generation_api_v1_genie_images_post
+      - openapi/mason-tasks-openapi.json#Creative_task_v1_task_creative_post
+      - openapi/mason-tasks-openapi.json#Creative_task_status_v1_creative_status_post
+  - status: 401
+    title: Unauthorized
+    meaning: Missing or invalid OAuth2 bearer token (OAuth2PasswordBearer).
+    source_operations:
+      - openapi/mason-apps-openapi.json#Create_an_app_v1_app_post
+      - openapi/mason-generation-openapi.json#Generation_api_v1_genie_images_post
+      - openapi/mason-search-openapi.json#Asset_Search_v1_search_get
+      - openapi/mason-webhooks-openapi.json#Register_a_Webhook_v1_webhook_post
+  - status: 422
+    title: Validation Error
+    meaning: Request body or query parameters failed schema validation.
+    schema: HTTPValidationError
+    remediation: Inspect detail[].loc to locate the offending field and detail[].msg for the reason.
+    source_operations:
+      - openapi/mason-discounts-openapi.json#create_bulk_discounts_api_v1_scrooge_discounts_bulk_put
+      - openapi/mason-apps-openapi.json#Get_app_v1_app_get
+      - openapi/mason-webhooks-openapi.json#Get_Webhook_v1_webhook_get
+  - status: 500
+    title: Internal Server Error
+    meaning: Unexpected server error (e.g. while retrieving a generated image or template mapping).
+    source_operations:
+      - openapi/mason-generation-openapi.json#Get_Image_api_v1_genie_images__uid__get
+      - openapi/mason-generation-openapi.json#Get_Template_Mappings_api_v1_genie_template__template_id__get

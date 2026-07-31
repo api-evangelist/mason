@@ -1,0 +1,75 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  Cross-cutting request/response conventions derived from Mason's OpenAPI
+  (../openapi/*.json) and the developer docs at getmason.dev (Custom Checkout
+  Integration guide, API Reference). Mason's API is a FastAPI-generated REST API
+  on base host https://api.getmason.io.
+description: >-
+  How Mason's REST API behaves across operations: authentication, versioning,
+  pagination, the error envelope, webhooks and (absence of) idempotency
+  signaling. Cross-links ../authentication/, ../errors/, ../asyncapi/ and
+  ../lifecycle/.
+
+base_url: https://api.getmason.io
+api_style: REST over HTTPS, JSON request/response bodies
+
+authentication:
+  scheme: OAuth2 bearer token (OpenAPI securityScheme OAuth2PasswordBearer, password flow, tokenUrl "token")
+  header: 'Authorization: Bearer <token>'
+  detail: authentication/mason-authentication.yml
+  notes: >-
+    Discount (Scrooge) and creative-task operations in the harvested spec do not
+    attach a security requirement; app, generation, search and webhook operations
+    require the OAuth2 bearer scheme.
+
+versioning:
+  scheme: uri-path
+  observed_prefixes: ['/v1', '/api/v1', '/api']
+  notes: >-
+    Versioning is expressed in the URL path (e.g. /v1/app, /api/v1/scrooge/...).
+    No version header was observed in the OpenAPI. See lifecycle/mason-lifecycle.yml.
+
+pagination:
+  style: offset
+  applies_to: Asset Search (GET /v1/search)
+  request_params:
+    from_: Zero-based offset of the first result to return.
+    size: Number of results per page.
+  notes: Only the search endpoint is paginated; other endpoints return single objects or full collections.
+
+idempotency:
+  supported: false
+  notes: >-
+    No Idempotency-Key header or idempotent-retry contract is documented in the
+    OpenAPI or the developer docs. Discount create/cleanup operations use PUT
+    (naturally idempotent by HTTP semantics) and carry client-supplied uid /
+    discount_ids_map values, but there is no explicit idempotency-key mechanism.
+
+error_envelope:
+  media_type: application/json
+  shape: '{ "detail": [ { "loc": [...], "msg": "...", "type": "..." } ] }'
+  standard: FastAPI HTTPValidationError (not RFC 9457 problem+json)
+  detail: errors/mason-problem-types.yml
+
+webhooks:
+  supported: true
+  model: >-
+    Register a webhook (POST /v1/webhook) with an event_type and channel_details
+    (target url, headers, method, source_fields, success_codes, fallback,
+    timeout); list (GET /v1/webhook) and delete (DELETE /v1/webhook/{id}).
+  detail: asyncapi/mason-webhooks.yml
+
+rate_limiting:
+  documented: false
+  notes: The provider's docs (ReadMe-hosted) enforce request throttling, but no API rate-limit headers or policy are documented for api.getmason.io.
+
+conventions:
+  long_running_tasks: >-
+    Image generation and creative tasks are asynchronous: submit a task
+    (POST /api/images, POST /v1/task/creative) then poll status
+    (GET /api/images/{uid}, POST /v1/creative/status).
+  custom_checkout: >-
+    A window.postMessage contract (messageType WEBSITE_APP_EVENT, actionType
+    CART_CREATE) signed with HMAC-SHA256 over the key-sorted JSON payload is used
+    for custom checkout integrations. See docs express-checkout-integration.

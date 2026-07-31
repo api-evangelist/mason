@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: generated
+source: >-
+  Packaged Agent Skills generated from Mason's harvested OpenAPI (../openapi/*.json).
+  Every step is grounded in an operationId verified verbatim in the specs;
+  cross-cutting rules cite ../conventions/, ../errors/, ../authentication/ and
+  ../asyncapi/.
+skills:
+  - file: mason-generate-creative-image.md
+    name: Generate a creative image from a template
+    api: openapi/mason-generation-openapi.json
+    operations: [Get_Template_Mappings_api_v1_genie_template__template_id__get, Generation_api_v1_genie_images_post, Get_Image_api_v1_genie_images__uid__get]
+  - file: mason-create-store-discounts.md
+    name: Create and clean up store discounts
+    api: openapi/mason-discounts-openapi.json
+    operations: [create_bulk_discounts_api_v1_scrooge_discounts_bulk_put, create_tiered_discounts_api_v1_scrooge_tiered_discounts_put, cleanup_tiered_discounts_api_v1_scrooge_discounts_bulk_delete_put, cleanup_tiered_discounts_api_v1_scrooge_tiered_discounts_delete_put]
+  - file: mason-manage-webhooks.md
+    name: Subscribe to Mason events with webhooks
+    api: openapi/mason-webhooks-openapi.json
+    operations: [Register_a_Webhook_v1_webhook_post, Get_Webhook_v1_webhook_get, Delete_Webhook_v1_webhook__id__delete]

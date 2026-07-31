@@ -1,0 +1,18 @@
+# Mason Developer Hub Documentation
+
+> The developer center for creative & commerce
+
+## Guides
+- [Custom Checkout Integration](https://www.getmason.dev/docs/express-checkout-integration.md): Step-by-step details for setting up a custom checkout provider for Mason apps
+
+## API Reference
+- [Create Tiered Discounts](https://www.getmason.dev/reference/create_tiered_discounts_api_v1_scrooge_tiered_discounts_put.md)
+- [Cleanup Tiered Discounts](https://www.getmason.dev/reference/cleanup_tiered_discounts_api_v1_scrooge_discounts_bulk_delete_put.md)
+- [Cleanup Tiered Discounts](https://www.getmason.dev/reference/cleanup_tiered_discounts_api_v1_scrooge_tiered_discounts_delete_put.md)
+- [Create Bulk Discounts](https://www.getmason.dev/reference/create_bulk_discounts_api_v1_scrooge_discounts_bulk_put.md): Create multiple bulk discounts, including tiered and BxGy discounts.  - **store**: The identifier for the store where discounts are applied. - **discount_info**: A list of discount objects, which can be of various types including:     - TieredDiscountModel     - BxGyDiscountModel     - TimedDiscountModel     - CustomBxGyDiscountModel
+
+## Recipes
+- [Welcome Tag](https://www.getmason.dev/recipes/welcome-tag.md)
+
+## Changelog
+- [Genie weekly update - 7th October 2021](https://www.getmason.dev/changelog/weekly-update-7th-october-2021.md)

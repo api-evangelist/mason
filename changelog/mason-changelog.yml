@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.getmason.dev/changelog
+docs: https://www.getmason.dev/changelog
+description: >-
+  Mason maintains a developer changelog on its ReadMe-hosted developer hub. As of
+  capture the public changelog surfaces a single dated entry; the live changelog
+  is the source of truth.
+versioning:
+  scheme: uri-path (see lifecycle/mason-lifecycle.yml)
+entries:
+  - title: Genie weekly update - 7th October 2021
+    date: '2021-10-07'
+    type: Added
+    author: Barada Sahu
+    url: https://www.getmason.dev/changelog/weekly-update-7th-october-2021.md
