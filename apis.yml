@@ -142,6 +142,8 @@ apis:
   - type: OpenAPI
     url: openapi/mason-webhooks-api-openapi.yml
 common:
+- type: Overlay
+  url: overlays/mason-apps-overlay.yaml
 - type: VulnerabilityDisclosure
   url: security/mason-vulnerability-disclosure.yml
 - type: Security
