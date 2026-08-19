@@ -1,0 +1,536 @@
+{
+  "item": [
+    {
+      "id": "ccdd4f61-fb18-4201-8ffc-e8f7af60e9d6",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f2280ed-c82d-4e4b-869d-2a95abf0e9dc",
+          "name": "Asset Search",
+          "request": {
+            "name": "Asset Search",
+            "description": {
+              "content": "Search an asset from the assets store",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from_",
+                  "value": "0",
+                  "description": "From offset, used in pagination with default value 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Number of result to fetch in search response from the offset. Default is 20 and maximum allowed is 100"
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "image,video,audio,folder,font,blob",
+                  "description": "Type of assets to search on like image,video,audio,folder,font,blob"
+                },
+                {
+                  "disabled": false,
+                  "key": "constraints",
+                  "value": "<string>",
+                  "description": "Comma separated search filters in terms of field:value pair"
+                },
+                {
+                  "disabled": false,
+                  "key": "attributes",
+                  "value": "<string>",
+                  "description": "Filters on custom_attributes.* fields. Input is passed as key value pair separated by \":\" and more than one fields are separated by \"#$!%#\""
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Asset search results to be sorted based on. Input is passed as field:order pair separated by \":\". More than one fields are separated by \"#$!%#\""
+                },
+                {
+                  "disabled": false,
+                  "key": "asset_attributes",
+                  "value": "<string>",
+                  "description": "Filters on asset_attributes.* fields. Input is passed as key value pair separated by \":\" and more than one fields are separated by \"#$!%#\""
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_attributes",
+                  "value": "<string>",
+                  "description": "Execlude filters on asset_attributes.* fields. Input is passed as key value pair separated by \":\" and more than one fields are separated by \"#$!%#\" "
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Query text to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "url_filter",
+                  "value": "true",
+                  "description": "Filter only those result which has asset url in it"
+                },
+                {
+                  "disabled": false,
+                  "key": "exact_match",
+                  "value": "false",
+                  "description": "Whether to search only the query text or attribute values as well"
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Folder path to search assets in"
+                },
+                {
+                  "disabled": false,
+                  "key": "exact_path",
+                  "value": "false",
+                  "description": "Whether to match exact path or not"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_hidden",
+                  "value": "false",
+                  "description": "Whether to include hidden assets in the search result or not"
+                },
+                {
+                  "disabled": false,
+                  "key": "filesize_threshold",
+                  "value": "<string>",
+                  "description": "Filter on Asset size in KB"
+                },
+                {
+                  "disabled": false,
+                  "key": "search_all",
+                  "value": "false",
+                  "description": "Whether to search on asset only or include folder results as well"
+                },
+                {
+                  "disabled": false,
+                  "key": "offer",
+                  "value": "<string>",
+                  "description": "Offer text to search on asset_attributes.flag_offer field"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Source of the search request for custom search handling"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a2924251-e3c0-4464-ae8c-c1dc686c38ff",
+              "name": "Asset search result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "types",
+                      "value": "image,video,audio,folder,font,blob"
+                    },
+                    {
+                      "key": "constraints",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_attributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_attributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url_filter",
+                      "value": "true"
+                    },
+                    {
+                      "key": "exact_match",
+                      "value": "false"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exact_path",
+                      "value": "false"
+                    },
+                    {
+                      "key": "show_hidden",
+                      "value": "false"
+                    },
+                    {
+                      "key": "filesize_threshold",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_all",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1667,\n  \"workspace_id\": \"<workspace if>\",\n  \"path_names\": [\n    \"Home\"\n  ],\n  \"path\": \"/root\",\n  \"folder_name\": \"Home\",\n  \"applied_filters\": {\n    \"failed\": false,\n    \"filters_added\": {\n      \"asset_type\": [\n        \"image\",\n        \"video\",\n        \"audio\",\n        \"folder\",\n        \"font\",\n        \"blob\"\n      ]\n    }\n  },\n  \"parsed\": [\n    {\n      \"key\": \"brand\",\n      \"value\": \"adidas\"\n    }\n  ],\n  \"query\": \"adidas\",\n  \"hits\": [\n    {\n      \"title\": \"Adidas tshirt.jpg\",\n      \"filename\": \"Adidas tshirt.jpg\",\n      \"orientation\": \"landscape\",\n      \"copy_url\": \"<Asset url>\",\n      \"url\": \"<Asset url>\",\n      \"tags\": [\n        \"Product\",\n        \"shirt\",\n        \"Team\",\n        \"People\",\n        \"Crowd\",\n        \"Team sport\",\n        \"Cheering\",\n        \"Player\",\n        \"Fan\",\n        \"Uniform\"\n      ],\n      \"id\": \"<Asset id>\",\n      \"user_id\": \"<User id>\",\n      \"asset_type\": \"image\",\n      \"width\": 799,\n      \"height\": 768,\n      \"custom_attributes\": [],\n      \"asset_attributes\": [\n        {\n          \"name\": \"is_logo\",\n          \"value\": false\n        }\n      ],\n      \"source_website\": \"kubric\",\n      \"download_url\": \"<Storage url>\",\n      \"file_size\": 208678,\n      \"path\": \"/root\",\n      \"shared_with\": [],\n      \"path_names\": [\n        \"Home\"\n      ],\n      \"file_type\": \".jpg\",\n      \"versions\": [\n        {\n          \"blobname\": \"askjakjas-424rn-34jknf3-kjsdcsd.jpg\",\n          \"created_time\": \"2019-08-02T14:37:35.892935\",\n          \"id\": \"askjakjas-424rn-34jknf3-kjsdcsd\",\n          \"name\": \"Original Asset\",\n          \"url\": \"<Asset URL>\"\n        }\n      ],\n      \"usage_stats\": [],\n      \"public\": true,\n      \"parent_shared\": true,\n      \"pinned\": false,\n      \"workspace_id\": \"<workspace if>\",\n      \"active_version\": \"askjakjas-424rn-34jknf3-kjsdcsd.jpg\",\n      \"color\": {\n        \"h\": 20,\n        \"s\": 25.352112676056336,\n        \"v\": 27.84313725490196,\n        \"rgb\": \"473B35\"\n      },\n      \"palette\": [\n        \"473B35\",\n        \"CBBDAD\",\n        \"ACB1AD\",\n        \"9C6E4C\",\n        \"8C99A4\"\n      ],\n      \"created_time\": \"2014-08-09T16:30:06.000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63daac4a-1f42-46b4-9fc8-e3efb91dc1ad",
+              "name": "Unauthorized call to the API",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "types",
+                      "value": "image,video,audio,folder,font,blob"
+                    },
+                    {
+                      "key": "constraints",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_attributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_attributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url_filter",
+                      "value": "true"
+                    },
+                    {
+                      "key": "exact_match",
+                      "value": "false"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exact_path",
+                      "value": "false"
+                    },
+                    {
+                      "key": "show_hidden",
+                      "value": "false"
+                    },
+                    {
+                      "key": "filesize_threshold",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_all",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b8a5476-ca69-49e3-ab00-a14be4c1320a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "types",
+                      "value": "image,video,audio,folder,font,blob"
+                    },
+                    {
+                      "key": "constraints",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asset_attributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_attributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url_filter",
+                      "value": "true"
+                    },
+                    {
+                      "key": "exact_match",
+                      "value": "false"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exact_path",
+                      "value": "false"
+                    },
+                    {
+                      "key": "show_hidden",
+                      "value": "false"
+                    },
+                    {
+                      "key": "filesize_threshold",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_all",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getmason.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "78d2f285-7dda-4c98-ac38-2b60a99f42dc",
+    "name": "Mason Apps Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Mason (getmason.io / ModeMagic) apps API — harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev.",
+      "type": "text/plain"
+    }
+  }
+}

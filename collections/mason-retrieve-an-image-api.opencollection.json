@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mason Apps Retrieve an Image API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieve an Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getmason.io/api/images/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "UID received from generation task"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get Image Generation status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

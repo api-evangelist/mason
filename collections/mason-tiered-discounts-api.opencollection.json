@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mason Apps Tiered Discounts API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tiered Discounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Tiered Discounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getmason.io/api/v1/scrooge/tiered-discounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Tiered Discounts"
+        },
+        {
+          "info": {
+            "name": "Create Bulk Discounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getmason.io/api/v1/scrooge/discounts/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create multiple bulk discounts, including tiered and BxGy discounts.\n\n- **store**: The identifier for the store where discounts are applied.\n- **discount_info**: A list of discount objects, which can be of various types including:\n    - TieredDiscountModel\n    - BxGyDiscountModel\n    - TimedDiscountModel\n    - CustomBxGyDiscountModel\n\n**Example Request Body:**\n```json\n{\n    \"store\": \"store_name\",\n    \"discount_info\": [\n        {\n            \"type\": \"TIERED\",\n            \"value\": [\n              "
+        },
+        {
+          "info": {
+            "name": "Cleanup Tiered Discounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getmason.io/api/v1/scrooge/discounts/bulk/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cleanup Tiered Discounts"
+        },
+        {
+          "info": {
+            "name": "Cleanup Tiered Discounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getmason.io/api/v1/scrooge/tiered-discounts/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cleanup Tiered Discounts"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

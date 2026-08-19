@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mason Apps Search API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Asset Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getmason.io/v1/search",
+            "params": [
+              {
+                "name": "from_",
+                "value": "",
+                "type": "query",
+                "description": "From offset, used in pagination with default value 0"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of result to fetch in search response from the offset. Default is 20 and maximum allowed is 100"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Type of assets to search on like image,video,audio,folder,font,blob"
+              },
+              {
+                "name": "constraints",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated search filters in terms of field:value pair"
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Filters on custom_attributes.* fields. Input is passed as key value pair separated by \":\" and more than one fields are separated by \"#$!%#\""
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Asset search results to be sorted based on. Input is passed as field:order pair separated by \":\". More than one fields are separated by \"#$!%#\""
+              },
+              {
+                "name": "asset_attributes",
+                "value": "",
+                "type": "query",
+                "description": "Filters on asset_attributes.* fields. Input is passed as key value pair separated by \":\" and more than one fields are separated by \"#$!%#\""
+              },
+              {
+                "name": "exclude_attributes",
+                "value": "",
+                "type": "query",
+                "description": "Execlude filters on asset_attributes.* fields. Input is passed as key value pair separated by \":\" and more than one fields are separated by \"#$!%#\" "
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Query text to search"
+              },
+              {
+                "name": "url_filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter only those result which has asset url in it"
+              },
+              {
+                "name": "exact_match",
+                "value": "",
+                "type": "query",
+                "description": "Whether to search only the query text or attribute values as well"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Folder path to search assets in"
+              },
+              {
+                "name": "exact_path",
+                "value": "",
+                "type": "query",
+                "description": "Whether to match exact path or not"
+              },
+              {
+                "name": "show_hidden",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include hidden assets in the search result or not"
+              },
+              {
+                "name": "filesize_threshold",
+                "value": "",
+                "type": "query",
+                "description": "Filter on Asset size in KB"
+              },
+              {
+                "name": "search_all",
+                "value": "",
+                "type": "query",
+                "description": "Whether to search on asset only or include folder results as well"
+              },
+              {
+                "name": "offer",
+                "value": "",
+                "type": "query",
+                "description": "Offer text to search on asset_attributes.flag_offer field"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Source of the search request for custom search handling"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Search an asset from the assets store"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

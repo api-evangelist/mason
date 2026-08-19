@@ -1,0 +1,607 @@
+{
+  "item": [
+    {
+      "id": "bea6d44d-1371-4c7e-93b4-887c25923084",
+      "name": "Tiered Discounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0be426d-d941-4106-ab31-55ac1a192270",
+          "name": "Create Tiered Discounts",
+          "request": {
+            "name": "Create Tiered Discounts",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "scrooge",
+                "tiered-discounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"store\": \"<string>\",\n  \"discount_info\": \"<object>\",\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": [],\n  \"access_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b6b311ff-e288-4a8a-8f33-7617feeed5d1",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "scrooge",
+                    "tiered-discounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<string>\",\n  \"discount_info\": \"<object>\",\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": [],\n  \"access_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4381b09-44a1-42d0-924e-7a7ff4fd132a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "scrooge",
+                    "tiered-discounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<string>\",\n  \"discount_info\": \"<object>\",\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": [],\n  \"access_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e858060-c375-4d07-a36a-8389745f1c7c",
+          "name": "Create Bulk Discounts",
+          "request": {
+            "name": "Create Bulk Discounts",
+            "description": {
+              "content": "Create multiple bulk discounts, including tiered and BxGy discounts.\n\n- **store**: The identifier for the store where discounts are applied.\n- **discount_info**: A list of discount objects, which can be of various types including:\n    - TieredDiscountModel\n    - BxGyDiscountModel\n    - TimedDiscountModel\n    - CustomBxGyDiscountModel\n\n**Example Request Body:**\n```json\n{\n    \"store\": \"store_name\",\n    \"discount_info\": [\n        {\n            \"type\": \"TIERED\",\n            \"value\": [\n                {\n                    \"min_cart_value\": 50.0,\n                    \"min_quantity\": 2,\n                    \"type\": \"PERCENTAGE\",\n                    \"value\": 10.0,\n                    \"buy\": [{\"id\": \"product_id\", \"variants\": [\"variant_id\"]}],\n                    \"label\": \"10% off on orders over $50\",\n                    \"uid\": \"unique_discount_id_1\"\n                },\n                 {\n                    \"min_cart_value\": 100.0,\n                    \"min_quantity\": 2,\n                    \"type\": \"PERCENTAGE\",\n                    \"value\": 20.0,\n                    \"buy\": [{\"id\": \"product_id\", \"variants\": [\"variant_id\"]}],\n                    \"label\": \"20% off on orders over $100\",\n                    \"uid\": \"unique_discount_id_2\"\n                }\n            ],\n            \"applies_to\": {\n                \"collections\": [\"collection_id_1\"]\n            }\n        }\n    ],\n    \"discount_ids_map\": {\n        \"unique_discount_id_1\": \"discount_id_1\"\n    },\n    \"collection_ids\": [\"collection_id_2\"]\n}\n```\n\n**Example Response:**\n```json\n{\n    \"status\": \"success\",\n    \"data\": {\n        \"discount_ids_map\": {\n            \"unique_discount_id_1\": \"discount_id_1\",\n            \"unique_discount_id_2\": \"discount_id_2\"\n        },\n        \"collection_ids\": [\"collection_id_2\"]\n    }\n}\n```\n\n**Responses:**\n- **200**: Successful creation of bulk discounts.\n- **400**: Invalid store or payload.\n- **500**: Internal server error.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "scrooge",
+                "discounts",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"store\": \"<string>\",\n  \"discount_info\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<number>\",\n          \"uid\": \"<string>\",\n          \"min_cart_value\": \"<number>\",\n          \"min_quantity\": \"<integer>\",\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<number>\",\n          \"uid\": \"<string>\",\n          \"min_cart_value\": \"<number>\",\n          \"min_quantity\": \"<integer>\",\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"<string>\"\n        }\n      ],\n      \"applies_to\": {\n        \"collections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<number>\",\n          \"uid\": \"<string>\",\n          \"min_cart_value\": \"<number>\",\n          \"min_quantity\": \"<integer>\",\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<number>\",\n          \"uid\": \"<string>\",\n          \"min_cart_value\": \"<number>\",\n          \"min_quantity\": \"<integer>\",\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"<string>\"\n        }\n      ],\n      \"applies_to\": {\n        \"collections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "65ec0b03-18be-465c-a8c3-908213467337",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "scrooge",
+                    "discounts",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<string>\",\n  \"discount_info\": [\n    {\n      \"type\": \"tiered\",\n      \"value\": [\n        {\n          \"type\": \"string\",\n          \"value\": 8204.001794640144,\n          \"uid\": \"string\",\n          \"min_cart_value\": 8234.780868111908,\n          \"min_quantity\": 7696,\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": 2411.463621811041,\n          \"uid\": \"string\",\n          \"min_cart_value\": 8369.24760089251,\n          \"min_quantity\": 6878,\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"applies_to\": {\n        \"collections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"tiered\",\n      \"value\": [\n        {\n          \"type\": \"string\",\n          \"value\": 6180.562885346248,\n          \"uid\": \"string\",\n          \"min_cart_value\": 3432.284858875182,\n          \"min_quantity\": 9219,\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": 4393.4285292927825,\n          \"uid\": \"string\",\n          \"min_cart_value\": 1854.2181761810916,\n          \"min_quantity\": 6351,\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"applies_to\": {\n        \"collections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7476fd1a-7245-425e-925f-36639ef88548",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "scrooge",
+                    "discounts",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<string>\",\n  \"discount_info\": [\n    {\n      \"type\": \"tiered\",\n      \"value\": [\n        {\n          \"type\": \"string\",\n          \"value\": 8204.001794640144,\n          \"uid\": \"string\",\n          \"min_cart_value\": 8234.780868111908,\n          \"min_quantity\": 7696,\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": 2411.463621811041,\n          \"uid\": \"string\",\n          \"min_cart_value\": 8369.24760089251,\n          \"min_quantity\": 6878,\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"applies_to\": {\n        \"collections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    {\n      \"type\": \"tiered\",\n      \"value\": [\n        {\n          \"type\": \"string\",\n          \"value\": 6180.562885346248,\n          \"uid\": \"string\",\n          \"min_cart_value\": 3432.284858875182,\n          \"min_quantity\": 9219,\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": 4393.4285292927825,\n          \"uid\": \"string\",\n          \"min_cart_value\": 1854.2181761810916,\n          \"min_quantity\": 6351,\n          \"buy\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"applies_to\": {\n        \"collections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f259b60-6dc0-419c-9904-7bf5a2649475",
+          "name": "Cleanup Tiered Discounts",
+          "request": {
+            "name": "Cleanup Tiered Discounts",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "scrooge",
+                "discounts",
+                "bulk",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"store\": \"<string>\",\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": [],\n  \"applies_to_collection_ids\": [],\n  \"access_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08b4b35b-9ce0-40f2-9357-3c6718ab04aa",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "scrooge",
+                    "discounts",
+                    "bulk",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<string>\",\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": [],\n  \"applies_to_collection_ids\": [],\n  \"access_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83c85099-e9bf-4ba3-97ae-3e1e6cd85cf2",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "scrooge",
+                    "discounts",
+                    "bulk",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<string>\",\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": [],\n  \"applies_to_collection_ids\": [],\n  \"access_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "621bd1c4-2a0a-4637-badf-22cd28f75541",
+          "name": "Cleanup Tiered Discounts",
+          "request": {
+            "name": "Cleanup Tiered Discounts",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "scrooge",
+                "tiered-discounts",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"store\": \"<string>\",\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": [],\n  \"applies_to_collection_ids\": [],\n  \"access_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f6c1687-45b9-4521-8509-723415067ad3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "scrooge",
+                    "tiered-discounts",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<string>\",\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": [],\n  \"applies_to_collection_ids\": [],\n  \"access_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "249f7be9-8f49-4eff-a695-db88c269ea58",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "scrooge",
+                    "tiered-discounts",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<string>\",\n  \"discount_ids_map\": \"<object>\",\n  \"collection_ids\": [],\n  \"applies_to_collection_ids\": [],\n  \"access_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getmason.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "24e5a4c2-e82d-4fd7-a998-349da2192d45",
+    "name": "Mason Apps Tiered Discounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Mason (getmason.io / ModeMagic) apps API — harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev.",
+      "type": "text/plain"
+    }
+  }
+}

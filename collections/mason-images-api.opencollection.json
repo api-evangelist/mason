@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mason Apps Images API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creative Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getmason.io/v1/task/creative",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post creative generation task. It receives creative task creation requests and processes them asynchronously and returns batch id of the task"
+        },
+        {
+          "info": {
+            "name": "Creative Task Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getmason.io/v1/creative/status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get creative generation task status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
