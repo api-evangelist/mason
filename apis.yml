@@ -46,6 +46,17 @@ x-enrichment:
   pass: local-v1
 tags:
 - Company
+- E-Commerce
+- Commerce
+- Artificial Intelligence
+- Agents
+- Content Generation
+- Discounts
+- Promotions
+- Webhook
+- Shopify
+tags_raw:
+- Company
 - Ecommerce
 - Commerce
 - AI
@@ -67,6 +78,8 @@ apis:
   humanURL: https://www.getmason.dev/reference
   baseURL: https://api.getmason.io
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -77,6 +90,8 @@ apis:
   humanURL: https://www.getmason.dev/reference
   baseURL: https://api.getmason.io
   tags:
+  - CreateImage
+  tags_raw:
   - Create Image
   properties:
   - type: OpenAPI
@@ -87,6 +102,8 @@ apis:
   humanURL: https://www.getmason.dev/reference
   baseURL: https://api.getmason.io
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -137,6 +154,8 @@ apis:
   humanURL: https://www.getmason.dev/reference
   baseURL: https://api.getmason.io
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
