@@ -102,7 +102,7 @@ apis:
   humanURL: https://www.getmason.dev/reference
   baseURL: https://api.getmason.io
   tags:
-  - Create Image
+  - CreateImage
   tags_raw:
   - Create Image
   properties:
