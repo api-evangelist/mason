@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Mason Apps Webhooks API
+  title: Mason Webhooks API
   version: 0.1.0
-  description: Mason (getmason.io / ModeMagic) apps API — harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev.
+  description: Mason (getmason.io / ModeMagic) webhooks API — harvested verbatim from the provider's ReadMe-hosted OpenAPI definition at getmason.dev.
 servers:
 - url: https://api.getmason.io
 tags:
@@ -139,87 +139,6 @@ paths:
       - OAuth2PasswordBearer: []
 components:
   schemas:
-    DeleteWebhookResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-        message:
-          type: string
-          title: Message
-      type: object
-      title: DeleteWebhookResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    RegisterWebhookResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-      type: object
-      required:
-      - id
-      title: RegisterWebhookResponse
-    GetWebhookResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        channel_details:
-          $ref: '#/components/schemas/ChannelDetails'
-        event_type:
-          type: string
-          title: Event Type
-      type: object
-      required:
-      - id
-      - channel_details
-      - event_type
-      title: GetWebhookResponse
-    WebhookRegistrationModel:
-      properties:
-        channel_details:
-          allOf:
-          - $ref: '#/components/schemas/ChannelDetails'
-          title: channel_details
-          description: Dictionary containing url, headers and other fields required for sending notification.
-        event_type:
-          type: string
-          title: event_type
-          description: Event Type for which notification will be sent on this webhook
-      type: object
-      required:
-      - channel_details
-      - event_type
-      title: WebhookRegistrationModel
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ChannelDetails:
       properties:
         url:
@@ -263,6 +182,87 @@ components:
       required:
       - url
       title: ChannelDetails
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    GetWebhookResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        channel_details:
+          $ref: '#/components/schemas/ChannelDetails'
+        event_type:
+          type: string
+          title: Event Type
+      type: object
+      required:
+      - id
+      - channel_details
+      - event_type
+      title: GetWebhookResponse
+    WebhookRegistrationModel:
+      properties:
+        channel_details:
+          allOf:
+          - $ref: '#/components/schemas/ChannelDetails'
+          title: channel_details
+          description: Dictionary containing url, headers and other fields required for sending notification.
+        event_type:
+          type: string
+          title: event_type
+          description: Event Type for which notification will be sent on this webhook
+      type: object
+      required:
+      - channel_details
+      - event_type
+      title: WebhookRegistrationModel
+    RegisterWebhookResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+      type: object
+      required:
+      - id
+      title: RegisterWebhookResponse
+    DeleteWebhookResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        message:
+          type: string
+          title: Message
+      type: object
+      title: DeleteWebhookResponse
   securitySchemes:
     OAuth2PasswordBearer:
       type: oauth2

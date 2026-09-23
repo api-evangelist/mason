@@ -1,28 +1,52 @@
 {
   "provider": "mason",
   "sources": [
-    "mason-apps-api-openapi.yml",
-    "mason-create-image-api-openapi.yml",
-    "mason-images-api-openapi.yml",
-    "mason-retrieve-an-image-api-openapi.yml",
-    "mason-search-api-openapi.yml",
-    "mason-template-mappings-api-openapi.yml",
-    "mason-tiered-discounts-api-openapi.yml",
-    "mason-webhooks-api-openapi.yml"
+    "_original/mason-apps-openapi.json",
+    "_original/mason-discounts-openapi.json",
+    "_original/mason-generation-openapi.json",
+    "_original/mason-search-openapi.json",
+    "_original/mason-tasks-openapi.json",
+    "_original/mason-webhooks-openapi.json"
   ],
   "outputs": [
     "mason-apps-api-openapi.yml",
-    "mason-create-image-api-openapi.yml",
-    "mason-images-api-openapi.yml",
-    "mason-retrieve-an-image-api-openapi.yml",
-    "mason-search-api-openapi.yml",
-    "mason-template-mappings-api-openapi.yml",
     "mason-tiered-discounts-api-openapi.yml",
+    "mason-create-image-api-openapi.yml",
+    "mason-retrieve-an-image-api-openapi.yml",
+    "mason-template-mappings-api-openapi.yml",
+    "mason-search-api-openapi.yml",
+    "mason-images-api-openapi.yml",
     "mason-webhooks-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (6 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "mason-apps-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "mason-apps-openapi.json: declared missing tag: Apps",
+    "mason-discounts-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "mason-discounts-openapi.json: declared missing tag: Tiered Discounts",
+    "mason-generation-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "mason-generation-openapi.json: declared missing tag: Create Image",
+    "mason-generation-openapi.json: declared missing tag: Retrieve an Image",
+    "mason-generation-openapi.json: declared missing tag: Template Mappings",
+    "mason-search-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "mason-search-openapi.json: declared missing tag: Search",
+    "mason-tasks-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "mason-tasks-openapi.json: declared missing tag: Images",
+    "mason-webhooks-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "mason-webhooks-openapi.json: declared missing tag: Webhooks",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "mason-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mason-create-image-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mason-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mason-retrieve-an-image-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mason-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mason-template-mappings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mason-tiered-discounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mason-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
