@@ -163,37 +163,6 @@ components:
       required:
       - batch_id
       title: CreativeTaskStatusModel
-    CreativeTaskResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-        batch_id:
-          type: string
-          title: Batch Id
-        duplicate_tasks:
-          $ref: '#/components/schemas/DuplicateTaskIdResponse'
-        message:
-          type: string
-          title: Message
-      type: object
-      title: CreativeTaskResponse
-    CreativeTaskModel:
-      properties:
-        count:
-          type: integer
-          title: 'count: Count'
-          description: Total number of creative sent in the data json
-        data:
-          items: {}
-          type: array
-          title: 'data: Data'
-          description: List of creative input object
-      type: object
-      required:
-      - count
-      - data
-      title: CreativeTaskModel
     CreativeTaskStatusData:
       properties:
         status:
@@ -243,6 +212,19 @@ components:
       - msg
       - type
       title: ValidationError
+    CreativeTaskStatusResponse:
+      properties:
+        count:
+          type: integer
+          title: Count
+          default: 0
+        result:
+          items:
+            $ref: '#/components/schemas/CreativeTaskStatusData'
+          type: array
+          title: Result
+      type: object
+      title: CreativeTaskStatusResponse
     DuplicateTaskIdResponse:
       properties:
         count:
@@ -258,28 +240,6 @@ components:
       - count
       - ids
       title: DuplicateTaskIdResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    CreativeTaskStatusResponse:
-      properties:
-        count:
-          type: integer
-          title: Count
-          default: 0
-        result:
-          items:
-            $ref: '#/components/schemas/CreativeTaskStatusData'
-          type: array
-          title: Result
-      type: object
-      title: CreativeTaskStatusResponse
     DuplicateTaskIds:
       properties:
         task_id:
@@ -293,3 +253,43 @@ components:
       - task_id
       - batch_id
       title: DuplicateTaskIds
+    CreativeTaskModel:
+      properties:
+        count:
+          type: integer
+          title: 'count: Count'
+          description: Total number of creative sent in the data json
+        data:
+          items: {}
+          type: array
+          title: 'data: Data'
+          description: List of creative input object
+      type: object
+      required:
+      - count
+      - data
+      title: CreativeTaskModel
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CreativeTaskResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        batch_id:
+          type: string
+          title: Batch Id
+        duplicate_tasks:
+          $ref: '#/components/schemas/DuplicateTaskIdResponse'
+        message:
+          type: string
+          title: Message
+      type: object
+      title: CreativeTaskResponse

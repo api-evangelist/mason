@@ -73,6 +73,21 @@ components:
           title: Message
       type: object
       title: GenerationResponse
+    GenerationModel:
+      properties:
+        base:
+          type: string
+          title: 'template: Template'
+          description: Template ID for generating
+        patch:
+          type: object
+          title: 'patch: Patch'
+          description: Patch in JSON format containing parameters to be used in template for generation
+      type: object
+      required:
+      - base
+      - patch
+      title: GenerationModel
     HTTPValidationError:
       properties:
         detail:
@@ -103,21 +118,6 @@ components:
       - msg
       - type
       title: ValidationError
-    GenerationModel:
-      properties:
-        base:
-          type: string
-          title: 'template: Template'
-          description: Template ID for generating
-        patch:
-          type: object
-          title: 'patch: Patch'
-          description: Patch in JSON format containing parameters to be used in template for generation
-      type: object
-      required:
-      - base
-      - patch
-      title: GenerationModel
   securitySchemes:
     OAuth2PasswordBearer:
       type: oauth2
