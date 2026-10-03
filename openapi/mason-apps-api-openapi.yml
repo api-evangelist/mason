@@ -139,41 +139,6 @@ paths:
       - OAuth2PasswordBearer: []
 components:
   schemas:
-    PluginRegistrationModel:
-      properties:
-        name:
-          type: string
-          title: name
-          description: name of the app
-        display_name:
-          type: string
-          title: display name
-          description: Display name (case sensitive)
-        icon:
-          type: string
-          title: icon
-          description: Icon to be displayed on the App
-        app_type:
-          type: string
-          title: App Type
-          description: App Type
-          default: checkout
-        verify_merchant:
-          type: string
-          title: Verify Merchant
-          description: URL to verify merchant
-        create_checkout:
-          type: string
-          title: Create Checkout
-          description: URL to create checkout
-      type: object
-      required:
-      - name
-      - display_name
-      - icon
-      - verify_merchant
-      - create_checkout
-      title: PluginRegistrationModel
     DeletePluginResponse:
       properties:
         status:
@@ -226,15 +191,6 @@ components:
       - icon
       - display_name
       title: GetPluginResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     RegisterPluginResponse:
       properties:
         id:
@@ -244,6 +200,50 @@ components:
       required:
       - id
       title: RegisterPluginResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    PluginRegistrationModel:
+      properties:
+        name:
+          type: string
+          title: name
+          description: name of the app
+        display_name:
+          type: string
+          title: display name
+          description: Display name (case sensitive)
+        icon:
+          type: string
+          title: icon
+          description: Icon to be displayed on the App
+        app_type:
+          type: string
+          title: App Type
+          description: App Type
+          default: checkout
+        verify_merchant:
+          type: string
+          title: Verify Merchant
+          description: URL to verify merchant
+        create_checkout:
+          type: string
+          title: Create Checkout
+          description: URL to create checkout
+      type: object
+      required:
+      - name
+      - display_name
+      - icon
+      - verify_merchant
+      - create_checkout
+      title: PluginRegistrationModel
   securitySchemes:
     OAuth2PasswordBearer:
       type: oauth2

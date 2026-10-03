@@ -163,34 +163,6 @@ components:
       required:
       - batch_id
       title: CreativeTaskStatusModel
-    CreativeTaskStatusData:
-      properties:
-        status:
-          type: string
-          title: Status
-        creative_url:
-          type: string
-          title: Creative Url
-        batch_id:
-          type: string
-          title: Batch Id
-        task_id:
-          type: string
-          title: Task Id
-        input_data:
-          type: object
-          title: Input Data
-        rejection_reason:
-          type: string
-          title: Rejection Reason
-      type: object
-      required:
-      - status
-      - creative_url
-      - batch_id
-      - task_id
-      - rejection_reason
-      title: CreativeTaskStatusData
     ValidationError:
       properties:
         loc:
@@ -212,19 +184,21 @@ components:
       - msg
       - type
       title: ValidationError
-    CreativeTaskStatusResponse:
+    CreativeTaskResponse:
       properties:
-        count:
-          type: integer
-          title: Count
-          default: 0
-        result:
-          items:
-            $ref: '#/components/schemas/CreativeTaskStatusData'
-          type: array
-          title: Result
+        status:
+          type: string
+          title: Status
+        batch_id:
+          type: string
+          title: Batch Id
+        duplicate_tasks:
+          $ref: '#/components/schemas/DuplicateTaskIdResponse'
+        message:
+          type: string
+          title: Message
       type: object
-      title: CreativeTaskStatusResponse
+      title: CreativeTaskResponse
     DuplicateTaskIdResponse:
       properties:
         count:
@@ -269,6 +243,34 @@ components:
       - count
       - data
       title: CreativeTaskModel
+    CreativeTaskStatusData:
+      properties:
+        status:
+          type: string
+          title: Status
+        creative_url:
+          type: string
+          title: Creative Url
+        batch_id:
+          type: string
+          title: Batch Id
+        task_id:
+          type: string
+          title: Task Id
+        input_data:
+          type: object
+          title: Input Data
+        rejection_reason:
+          type: string
+          title: Rejection Reason
+      type: object
+      required:
+      - status
+      - creative_url
+      - batch_id
+      - task_id
+      - rejection_reason
+      title: CreativeTaskStatusData
     HTTPValidationError:
       properties:
         detail:
@@ -278,18 +280,16 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    CreativeTaskResponse:
+    CreativeTaskStatusResponse:
       properties:
-        status:
-          type: string
-          title: Status
-        batch_id:
-          type: string
-          title: Batch Id
-        duplicate_tasks:
-          $ref: '#/components/schemas/DuplicateTaskIdResponse'
-        message:
-          type: string
-          title: Message
+        count:
+          type: integer
+          title: Count
+          default: 0
+        result:
+          items:
+            $ref: '#/components/schemas/CreativeTaskStatusData'
+          type: array
+          title: Result
       type: object
-      title: CreativeTaskResponse
+      title: CreativeTaskStatusResponse
