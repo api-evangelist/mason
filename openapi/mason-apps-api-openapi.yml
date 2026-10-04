@@ -139,37 +139,6 @@ paths:
       - OAuth2PasswordBearer: []
 components:
   schemas:
-    DeletePluginResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-        message:
-          type: string
-          title: Message
-      type: object
-      title: DeletePluginResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     GetPluginResponse:
       properties:
         id:
@@ -191,6 +160,16 @@ components:
       - icon
       - display_name
       title: GetPluginResponse
+    DeletePluginResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        message:
+          type: string
+          title: Message
+      type: object
+      title: DeletePluginResponse
     RegisterPluginResponse:
       properties:
         id:
@@ -200,6 +179,27 @@ components:
       required:
       - id
       title: RegisterPluginResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     HTTPValidationError:
       properties:
         detail:

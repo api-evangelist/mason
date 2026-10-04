@@ -139,22 +139,6 @@ paths:
       - OAuth2PasswordBearer: []
 components:
   schemas:
-    WebhookRegistrationModel:
-      properties:
-        channel_details:
-          allOf:
-          - $ref: '#/components/schemas/ChannelDetails'
-          title: channel_details
-          description: Dictionary containing url, headers and other fields required for sending notification.
-        event_type:
-          type: string
-          title: event_type
-          description: Event Type for which notification will be sent on this webhook
-      type: object
-      required:
-      - channel_details
-      - event_type
-      title: WebhookRegistrationModel
     GetWebhookResponse:
       properties:
         id:
@@ -171,27 +155,15 @@ components:
       - channel_details
       - event_type
       title: GetWebhookResponse
-    ValidationError:
+    RegisterWebhookResponse:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        id:
           type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+          title: Id
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - id
+      title: RegisterWebhookResponse
     ChannelDetails:
       properties:
         url:
@@ -235,24 +207,22 @@ components:
       required:
       - url
       title: ChannelDetails
-    HTTPValidationError:
+    WebhookRegistrationModel:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    RegisterWebhookResponse:
-      properties:
-        id:
+        channel_details:
+          allOf:
+          - $ref: '#/components/schemas/ChannelDetails'
+          title: channel_details
+          description: Dictionary containing url, headers and other fields required for sending notification.
+        event_type:
           type: string
-          title: Id
+          title: event_type
+          description: Event Type for which notification will be sent on this webhook
       type: object
       required:
-      - id
-      title: RegisterWebhookResponse
+      - channel_details
+      - event_type
+      title: WebhookRegistrationModel
     DeleteWebhookResponse:
       properties:
         status:
@@ -263,6 +233,36 @@ components:
           title: Message
       type: object
       title: DeleteWebhookResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     OAuth2PasswordBearer:
       type: oauth2

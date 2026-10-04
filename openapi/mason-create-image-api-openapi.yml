@@ -60,15 +60,21 @@ paths:
       - OAuth2PasswordBearer: []
 components:
   schemas:
-    HTTPValidationError:
+    GenerationModel:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        base:
+          type: string
+          title: 'template: Template'
+          description: Template ID for generating
+        patch:
+          type: object
+          title: 'patch: Patch'
+          description: Patch in JSON format containing parameters to be used in template for generation
       type: object
-      title: HTTPValidationError
+      required:
+      - base
+      - patch
+      title: GenerationModel
     ValidationError:
       properties:
         loc:
@@ -90,6 +96,15 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     GenerationResponse:
       properties:
         status:
@@ -103,21 +118,6 @@ components:
           title: Message
       type: object
       title: GenerationResponse
-    GenerationModel:
-      properties:
-        base:
-          type: string
-          title: 'template: Template'
-          description: Template ID for generating
-        patch:
-          type: object
-          title: 'patch: Patch'
-          description: Patch in JSON format containing parameters to be used in template for generation
-      type: object
-      required:
-      - base
-      - patch
-      title: GenerationModel
   securitySchemes:
     OAuth2PasswordBearer:
       type: oauth2

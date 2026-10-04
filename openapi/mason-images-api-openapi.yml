@@ -163,86 +163,6 @@ components:
       required:
       - batch_id
       title: CreativeTaskStatusModel
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    CreativeTaskResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-        batch_id:
-          type: string
-          title: Batch Id
-        duplicate_tasks:
-          $ref: '#/components/schemas/DuplicateTaskIdResponse'
-        message:
-          type: string
-          title: Message
-      type: object
-      title: CreativeTaskResponse
-    DuplicateTaskIdResponse:
-      properties:
-        count:
-          type: integer
-          title: Count
-        ids:
-          items:
-            $ref: '#/components/schemas/DuplicateTaskIds'
-          type: array
-          title: Ids
-      type: object
-      required:
-      - count
-      - ids
-      title: DuplicateTaskIdResponse
-    DuplicateTaskIds:
-      properties:
-        task_id:
-          type: string
-          title: Task Id
-        batch_id:
-          type: string
-          title: Batch Id
-      type: object
-      required:
-      - task_id
-      - batch_id
-      title: DuplicateTaskIds
-    CreativeTaskModel:
-      properties:
-        count:
-          type: integer
-          title: 'count: Count'
-          description: Total number of creative sent in the data json
-        data:
-          items: {}
-          type: array
-          title: 'data: Data'
-          description: List of creative input object
-      type: object
-      required:
-      - count
-      - data
-      title: CreativeTaskModel
     CreativeTaskStatusData:
       properties:
         status:
@@ -271,6 +191,86 @@ components:
       - task_id
       - rejection_reason
       title: CreativeTaskStatusData
+    DuplicateTaskIds:
+      properties:
+        task_id:
+          type: string
+          title: Task Id
+        batch_id:
+          type: string
+          title: Batch Id
+      type: object
+      required:
+      - task_id
+      - batch_id
+      title: DuplicateTaskIds
+    DuplicateTaskIdResponse:
+      properties:
+        count:
+          type: integer
+          title: Count
+        ids:
+          items:
+            $ref: '#/components/schemas/DuplicateTaskIds'
+          type: array
+          title: Ids
+      type: object
+      required:
+      - count
+      - ids
+      title: DuplicateTaskIdResponse
+    CreativeTaskResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        batch_id:
+          type: string
+          title: Batch Id
+        duplicate_tasks:
+          $ref: '#/components/schemas/DuplicateTaskIdResponse'
+        message:
+          type: string
+          title: Message
+      type: object
+      title: CreativeTaskResponse
+    CreativeTaskModel:
+      properties:
+        count:
+          type: integer
+          title: 'count: Count'
+          description: Total number of creative sent in the data json
+        data:
+          items: {}
+          type: array
+          title: 'data: Data'
+          description: List of creative input object
+      type: object
+      required:
+      - count
+      - data
+      title: CreativeTaskModel
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     HTTPValidationError:
       properties:
         detail:
