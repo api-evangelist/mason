@@ -1,0 +1,37 @@
+slug: mason
+provider: Mason
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Tiered Discounts
+  spec_file: mason-tiered-discounts-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.92
+  evidence: PUT /api/v1/scrooge/tiered-discounts create_tiered_discounts 'Create Tiered Discounts'; schemas
+    TieredDiscountModel, BxGyDiscountModel, BulkDiscountPayload
+  reason: Operations create and clean up tiered, bulk and buy-X-get-Y discount offers for a merchant's
+    storefront, which is squarely discount and promotion administration.
+- tag: Webhooks
+  spec_file: mason-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.78
+  evidence: POST /v1/webhook Register_a_Webhook; GET /v1/webhook Get Webhook; DELETE /v1/webhook/{id}
+    Delete Webhook; schema WebhookRegistrationModel
+  reason: Full lifecycle of outbound webhook subscriptions exposed to integrating developers, which the
+    frame models explicitly as Webhook & Event Subscription Management. Not scored higher because webhook
+    registration is generic integration plumbing with no delivery-reliability or event-schema surface
+    shown.
