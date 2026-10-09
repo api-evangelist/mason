@@ -1,0 +1,72 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://getmason.io/pricing/
+sources:
+- https://getmason.io/pricing/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+  managed_tier: Grow Plan
+published: true
+note: Shopify app pricing page; FAQ mentions a "$49 plan" and 150+ orders threshold but no such plan is
+  listed in the plan table.
+plan_count: 3
+currency: USD
+plans:
+- name: Free trial
+  price_text: Try ModeMagic for free up to 10 orders
+  price: 10
+  period: none
+  unit: orders
+  included_quota: up to 10 orders
+- name: Grow Plan
+  price_text: $249 /mo
+  price: 249
+  currency: USD
+  period: month
+  included_quota: Exclusively for brands with revenue under US$10,000 / mon; Unlock revenue + conversion
+    apps, White-glove onboarding, Dedicated growth team, Monthly reports & review
+- name: Scale Plan
+  price_text: Talk to us for tailored plans
+  period: none
+  included_quota: AI-apps such as Smart Price, Personalised Auto-Bundles, Lightning Sales +more; Targeting
+    & Segmentation; Dedicated A/c Manager | Revenue Reports | 24x7
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - subscription
+  units:
+  - transaction
+  plans:
+  - name: Free trial
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - none
+  - name: Grow Plan
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Scale Plan
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
