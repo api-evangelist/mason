@@ -1,26 +1,38 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/mason-apps-openapi.json, openapi/mason-generation-openapi.json, openapi/mason-search-openapi.json,
-  openapi/mason-webhooks-openapi.json
+generated: '2026-10-14'
+method: none
+source: openapi/mason-apps-api-openapi.yml, openapi/mason-create-image-api-openapi.yml, openapi/mason-retrieve-an-image-api-openapi.yml,
+  openapi/mason-search-api-openapi.yml, openapi/mason-template-mappings-api-openapi.yml, openapi/mason-webhooks-api-openapi.yml
 schemes:
 - name: OAuth2PasswordBearer
-  source: openapi/mason-apps-openapi.json
+  source: openapi/mason-apps-api-openapi.yml
   flows:
   - flow: password
     tokenUrl: token
 - name: OAuth2PasswordBearer
-  source: openapi/mason-generation-openapi.json
+  source: openapi/mason-create-image-api-openapi.yml
   flows:
   - flow: password
     tokenUrl: token
 - name: OAuth2PasswordBearer
-  source: openapi/mason-search-openapi.json
+  source: openapi/mason-retrieve-an-image-api-openapi.yml
   flows:
   - flow: password
     tokenUrl: token
 - name: OAuth2PasswordBearer
-  source: openapi/mason-webhooks-openapi.json
+  source: openapi/mason-search-api-openapi.yml
+  flows:
+  - flow: password
+    tokenUrl: token
+- name: OAuth2PasswordBearer
+  source: openapi/mason-template-mappings-api-openapi.yml
+  flows:
+  - flow: password
+    tokenUrl: token
+- name: OAuth2PasswordBearer
+  source: openapi/mason-webhooks-api-openapi.yml
   flows:
   - flow: password
     tokenUrl: token
 scopes: []
+note: The OAuth2 security scheme(s) in the OpenAPI declare no scopes, and no security requirement
+  references one.
