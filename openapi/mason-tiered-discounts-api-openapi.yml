@@ -235,133 +235,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    BulkDiscountPayload:
-      properties:
-        store:
-          type: string
-          title: Store
-        discount_info:
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/TieredDiscountModel'
-            - $ref: '#/components/schemas/BxGyDiscountModel'
-            - $ref: '#/components/schemas/TimedDiscountModel'
-            - $ref: '#/components/schemas/CustomBxGyDiscountModel'
-          type: array
-          title: Discount Info
-        discount_ids_map:
-          type: object
-          title: Discount Ids Map
-        collection_ids:
-          items: {}
-          type: array
-          title: Collection Ids
-      type: object
-      required:
-      - store
-      - discount_info
-      - discount_ids_map
-      - collection_ids
-      title: BulkDiscountPayload
-    models__bxgy_discount_model__BuyItems:
-      properties:
-        products:
-          items:
-            $ref: '#/components/schemas/Product'
-          type: array
-          title: Products
-          description: A list of products that can be bought.
-        collections:
-          items:
-            $ref: '#/components/schemas/Collection'
-          type: array
-          title: Collections
-          description: A list of collections that can be bought.
-      type: object
-      title: BuyItems
-    models__custom_bxgy_discount_model__CustomerGets:
-      properties:
-        value:
-          allOf:
-          - $ref: '#/components/schemas/models__custom_bxgy_discount_model__GetValue'
-          description: The value of the discount for the items the customer gets.
-      type: object
-      required:
-      - value
-      title: CustomerGets
-    models__bxgy_discount_model__CustomerGets:
-      properties:
-        items:
-          allOf:
-          - $ref: '#/components/schemas/models__bxgy_discount_model__BuyItems'
-          description: Items that the customer gets.
-        value:
-          allOf:
-          - $ref: '#/components/schemas/models__bxgy_discount_model__GetValue'
-          description: The value of the discount for the items the customer gets.
-      type: object
-      required:
-      - items
-      - value
-      title: CustomerGets
-    BuyCollection:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: The unique identifier for the collection being bought.
-        quantity:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Quantity
-          description: The quantity of the collection being bought.
-          default: 1
-      type: object
-      required:
-      - id
-      title: BuyCollection
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    models__custom_bxgy_discount_model__GetValue:
-      properties:
-        type:
-          type: string
-          enum:
-          - percentage
-          - fixed_amount
-          title: Type
-          description: The type of discount, either 'PERCENTAGE' or 'FIXED_AMOUNT'.
-        value:
-          anyOf:
-          - type: string
-          - type: number
-          title: Value
-          description: The value of the discount, can be a string or a float.
-      type: object
-      required:
-      - type
-      - value
-      title: GetValue
     TieredDiscountPayload:
       properties:
         store:
@@ -387,79 +260,48 @@ components:
       - discount_ids_map
       - collection_ids
       title: TieredDiscountPayload
-    DeleteTieredDiscountPayload:
+    models__bxgy_discount_model__GetValue:
       properties:
-        store:
+        quantity:
+          type: integer
+          title: Quantity
+          description: The quantity of items the customer gets.
+        type:
           type: string
-          title: Store
-        access_token:
-          type: string
-          title: Access Token
-        discount_ids_map:
-          type: object
-          title: Discount Ids Map
-        collection_ids:
-          items: {}
-          type: array
-          title: Collection Ids
-        applies_to_collection_ids:
-          items: {}
-          type: array
-          title: Applies To Collection Ids
+          title: Type
+          description: The type of discount, either 'PERCENTAGE' or 'FIXED_AMOUNT'.
+        value:
+          anyOf:
+          - type: string
+          - type: number
+          title: Value
+          description: The value of the discount, can be a string or a float.
       type: object
       required:
-      - store
-      - discount_ids_map
-      - collection_ids
-      - applies_to_collection_ids
-      title: DeleteTieredDiscountPayload
-    CustomBxGyDiscountModel:
+      - quantity
+      - type
+      - value
+      title: GetValue
+    models__custom_bxgy_discount_model__GetValue:
       properties:
         type:
           type: string
           enum:
-          - custom_bxgy_order
-          const: custom_bxgy_order
+          - percentage
+          - fixed_amount
           title: Type
-          description: The type of discount, must be 'CUSTOM_BXGY_ORDER_DISCOUNT'.
-        label:
-          type: string
-          title: Label
-          description: A label for the discount.
-        buys:
-          allOf:
-          - $ref: '#/components/schemas/models__custom_bxgy_discount_model__BuyItems'
-          description: Details of what the customer buys.
-        gets:
-          allOf:
-          - $ref: '#/components/schemas/models__custom_bxgy_discount_model__CustomerGets'
-          description: Details of what the customer gets.
+          description: The type of discount, either 'PERCENTAGE' or 'FIXED_AMOUNT'.
+        value:
+          anyOf:
+          - type: string
+          - type: number
+          title: Value
+          description: The value of the discount, can be a string or a float.
       type: object
       required:
       - type
-      - label
-      - buys
-      - gets
-      title: CustomBxGyDiscountModel
-    Collection:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: The unique identifier for the collection.
-      type: object
-      required:
-      - id
-      title: Collection
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - value
+      title: GetValue
     BxGyDiscountModel:
       properties:
         type:
@@ -497,77 +339,6 @@ components:
       - buys
       - gets
       title: BxGyDiscountModel
-    TieredDiscountModel:
-      properties:
-        type:
-          type: string
-          enum:
-          - tiered
-          const: tiered
-          title: Type
-          description: The type of discount, must be 'TIERED'.
-        value:
-          items:
-            $ref: '#/components/schemas/DiscountValue'
-          type: array
-          title: Value
-          description: A list of discount values associated with this tiered discount.
-        applies_to:
-          anyOf:
-          - $ref: '#/components/schemas/DiscountAppliesTo'
-          - type: 'null'
-          description: Optional. Specifies the collections this discount applies to.
-      type: object
-      required:
-      - type
-      - value
-      title: TieredDiscountModel
-    models__custom_bxgy_discount_model__BuyItems:
-      properties:
-        collections:
-          items:
-            $ref: '#/components/schemas/BuyCollection'
-          type: array
-          title: Collections
-          description: A list of collections that can be bought.
-      type: object
-      title: BuyItems
-    TimedDiscountModel:
-      properties:
-        uid:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Uid
-          description: Unique identifier for the discount.
-        type:
-          type: string
-          enum:
-          - timed_discount
-          const: timed_discount
-          title: Type
-          description: The type of discount, must be 'TIMED_DISCOUNT'.
-        label:
-          type: string
-          title: Label
-          description: A label for the discount.
-        start_time:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Start Time
-          description: The start time of the discount in ISO format.
-        end_time:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: End Time
-          description: The end time of the discount in ISO format.
-      type: object
-      required:
-      - type
-      - label
-      title: TimedDiscountModel
     DiscountValue:
       properties:
         min_cart_value:
@@ -611,6 +382,186 @@ components:
       - value
       - uid
       title: DiscountValue
+    TieredDiscountModel:
+      properties:
+        type:
+          type: string
+          enum:
+          - tiered
+          const: tiered
+          title: Type
+          description: The type of discount, must be 'TIERED'.
+        value:
+          items:
+            $ref: '#/components/schemas/DiscountValue'
+          type: array
+          title: Value
+          description: A list of discount values associated with this tiered discount.
+        applies_to:
+          anyOf:
+          - $ref: '#/components/schemas/DiscountAppliesTo'
+          - type: 'null'
+          description: Optional. Specifies the collections this discount applies to.
+      type: object
+      required:
+      - type
+      - value
+      title: TieredDiscountModel
+    BulkDiscountPayload:
+      properties:
+        store:
+          type: string
+          title: Store
+        discount_info:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/TieredDiscountModel'
+            - $ref: '#/components/schemas/BxGyDiscountModel'
+            - $ref: '#/components/schemas/TimedDiscountModel'
+            - $ref: '#/components/schemas/CustomBxGyDiscountModel'
+          type: array
+          title: Discount Info
+        discount_ids_map:
+          type: object
+          title: Discount Ids Map
+        collection_ids:
+          items: {}
+          type: array
+          title: Collection Ids
+      type: object
+      required:
+      - store
+      - discount_info
+      - discount_ids_map
+      - collection_ids
+      title: BulkDiscountPayload
+    models__bxgy_discount_model__CustomerGets:
+      properties:
+        items:
+          allOf:
+          - $ref: '#/components/schemas/models__bxgy_discount_model__BuyItems'
+          description: Items that the customer gets.
+        value:
+          allOf:
+          - $ref: '#/components/schemas/models__bxgy_discount_model__GetValue'
+          description: The value of the discount for the items the customer gets.
+      type: object
+      required:
+      - items
+      - value
+      title: CustomerGets
+    TimedDiscountModel:
+      properties:
+        uid:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Uid
+          description: Unique identifier for the discount.
+        type:
+          type: string
+          enum:
+          - timed_discount
+          const: timed_discount
+          title: Type
+          description: The type of discount, must be 'TIMED_DISCOUNT'.
+        label:
+          type: string
+          title: Label
+          description: A label for the discount.
+        start_time:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Start Time
+          description: The start time of the discount in ISO format.
+        end_time:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: End Time
+          description: The end time of the discount in ISO format.
+      type: object
+      required:
+      - type
+      - label
+      title: TimedDiscountModel
+    CustomerBuys:
+      properties:
+        items:
+          allOf:
+          - $ref: '#/components/schemas/models__bxgy_discount_model__BuyItems'
+          description: Items that the customer buys.
+      type: object
+      required:
+      - items
+      title: CustomerBuys
+    models__custom_bxgy_discount_model__BuyItems:
+      properties:
+        collections:
+          items:
+            $ref: '#/components/schemas/BuyCollection'
+          type: array
+          title: Collections
+          description: A list of collections that can be bought.
+      type: object
+      title: BuyItems
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    models__bxgy_discount_model__BuyItems:
+      properties:
+        products:
+          items:
+            $ref: '#/components/schemas/Product'
+          type: array
+          title: Products
+          description: A list of products that can be bought.
+        collections:
+          items:
+            $ref: '#/components/schemas/Collection'
+          type: array
+          title: Collections
+          description: A list of collections that can be bought.
+      type: object
+      title: BuyItems
+    models__custom_bxgy_discount_model__CustomerGets:
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/models__custom_bxgy_discount_model__GetValue'
+          description: The value of the discount for the items the customer gets.
+      type: object
+      required:
+      - value
+      title: CustomerGets
+    DiscountAppliesTo:
+      properties:
+        collections:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Collections
+      type: object
+      title: DiscountAppliesTo
+    Collection:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: The unique identifier for the collection.
+      type: object
+      required:
+      - id
+      title: Collection
     FreebieBuyGet:
       properties:
         id:
@@ -626,17 +577,34 @@ components:
       - id
       - variants
       title: FreebieBuyGet
-    DiscountAppliesTo:
+    CustomBxGyDiscountModel:
       properties:
-        collections:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Collections
+        type:
+          type: string
+          enum:
+          - custom_bxgy_order
+          const: custom_bxgy_order
+          title: Type
+          description: The type of discount, must be 'CUSTOM_BXGY_ORDER_DISCOUNT'.
+        label:
+          type: string
+          title: Label
+          description: A label for the discount.
+        buys:
+          allOf:
+          - $ref: '#/components/schemas/models__custom_bxgy_discount_model__BuyItems'
+          description: Details of what the customer buys.
+        gets:
+          allOf:
+          - $ref: '#/components/schemas/models__custom_bxgy_discount_model__CustomerGets'
+          description: Details of what the customer gets.
       type: object
-      title: DiscountAppliesTo
+      required:
+      - type
+      - label
+      - buys
+      - gets
+      title: CustomBxGyDiscountModel
     Product:
       properties:
         id:
@@ -654,35 +622,67 @@ components:
       - id
       - variants
       title: Product
-    CustomerBuys:
+    BuyCollection:
       properties:
-        items:
-          allOf:
-          - $ref: '#/components/schemas/models__bxgy_discount_model__BuyItems'
-          description: Items that the customer buys.
+        id:
+          type: string
+          title: Id
+          description: The unique identifier for the collection being bought.
+        quantity:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Quantity
+          description: The quantity of the collection being bought.
+          default: 1
       type: object
       required:
-      - items
-      title: CustomerBuys
-    models__bxgy_discount_model__GetValue:
+      - id
+      title: BuyCollection
+    ValidationError:
       properties:
-        quantity:
-          type: integer
-          title: Quantity
-          description: The quantity of items the customer gets.
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
         type:
           type: string
-          title: Type
-          description: The type of discount, either 'PERCENTAGE' or 'FIXED_AMOUNT'.
-        value:
-          anyOf:
-          - type: string
-          - type: number
-          title: Value
-          description: The value of the discount, can be a string or a float.
+          title: Error Type
       type: object
       required:
-      - quantity
+      - loc
+      - msg
       - type
-      - value
-      title: GetValue
+      title: ValidationError
+    DeleteTieredDiscountPayload:
+      properties:
+        store:
+          type: string
+          title: Store
+        access_token:
+          type: string
+          title: Access Token
+        discount_ids_map:
+          type: object
+          title: Discount Ids Map
+        collection_ids:
+          items: {}
+          type: array
+          title: Collection Ids
+        applies_to_collection_ids:
+          items: {}
+          type: array
+          title: Applies To Collection Ids
+      type: object
+      required:
+      - store
+      - discount_ids_map
+      - collection_ids
+      - applies_to_collection_ids
+      title: DeleteTieredDiscountPayload

@@ -139,76 +139,6 @@ paths:
       - OAuth2PasswordBearer: []
 components:
   schemas:
-    GetPluginResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        icon:
-          type: string
-          title: Icon
-        display_name:
-          type: string
-          title: Display Name
-      type: object
-      required:
-      - id
-      - name
-      - icon
-      - display_name
-      title: GetPluginResponse
-    DeletePluginResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-        message:
-          type: string
-          title: Message
-      type: object
-      title: DeletePluginResponse
-    RegisterPluginResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-      type: object
-      required:
-      - id
-      title: RegisterPluginResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     PluginRegistrationModel:
       properties:
         name:
@@ -244,6 +174,76 @@ components:
       - verify_merchant
       - create_checkout
       title: PluginRegistrationModel
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    RegisterPluginResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+      type: object
+      required:
+      - id
+      title: RegisterPluginResponse
+    GetPluginResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        icon:
+          type: string
+          title: Icon
+        display_name:
+          type: string
+          title: Display Name
+      type: object
+      required:
+      - id
+      - name
+      - icon
+      - display_name
+      title: GetPluginResponse
+    DeletePluginResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        message:
+          type: string
+          title: Message
+      type: object
+      title: DeletePluginResponse
   securitySchemes:
     OAuth2PasswordBearer:
       type: oauth2

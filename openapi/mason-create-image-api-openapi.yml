@@ -60,6 +60,15 @@ paths:
       - OAuth2PasswordBearer: []
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     GenerationModel:
       properties:
         base:
@@ -75,6 +84,19 @@ components:
       - base
       - patch
       title: GenerationModel
+    GenerationResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        uid:
+          type: string
+          title: Uid
+        message:
+          type: string
+          title: Message
+      type: object
+      title: GenerationResponse
     ValidationError:
       properties:
         loc:
@@ -96,28 +118,6 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    GenerationResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-        uid:
-          type: string
-          title: Uid
-        message:
-          type: string
-          title: Message
-      type: object
-      title: GenerationResponse
   securitySchemes:
     OAuth2PasswordBearer:
       type: oauth2

@@ -163,6 +163,19 @@ components:
       required:
       - batch_id
       title: CreativeTaskStatusModel
+    CreativeTaskStatusResponse:
+      properties:
+        count:
+          type: integer
+          title: Count
+          default: 0
+        result:
+          items:
+            $ref: '#/components/schemas/CreativeTaskStatusData'
+          type: array
+          title: Result
+      type: object
+      title: CreativeTaskStatusResponse
     CreativeTaskStatusData:
       properties:
         status:
@@ -191,6 +204,36 @@ components:
       - task_id
       - rejection_reason
       title: CreativeTaskStatusData
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     DuplicateTaskIds:
       properties:
         task_id:
@@ -219,21 +262,6 @@ components:
       - count
       - ids
       title: DuplicateTaskIdResponse
-    CreativeTaskResponse:
-      properties:
-        status:
-          type: string
-          title: Status
-        batch_id:
-          type: string
-          title: Batch Id
-        duplicate_tasks:
-          $ref: '#/components/schemas/DuplicateTaskIdResponse'
-        message:
-          type: string
-          title: Message
-      type: object
-      title: CreativeTaskResponse
     CreativeTaskModel:
       properties:
         count:
@@ -250,46 +278,18 @@ components:
       - count
       - data
       title: CreativeTaskModel
-    ValidationError:
+    CreativeTaskResponse:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        status:
+          type: string
+          title: Status
+        batch_id:
+          type: string
+          title: Batch Id
+        duplicate_tasks:
+          $ref: '#/components/schemas/DuplicateTaskIdResponse'
+        message:
           type: string
           title: Message
-        type:
-          type: string
-          title: Error Type
       type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    CreativeTaskStatusResponse:
-      properties:
-        count:
-          type: integer
-          title: Count
-          default: 0
-        result:
-          items:
-            $ref: '#/components/schemas/CreativeTaskStatusData'
-          type: array
-          title: Result
-      type: object
-      title: CreativeTaskStatusResponse
+      title: CreativeTaskResponse
