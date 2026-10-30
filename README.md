@@ -64,6 +64,158 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Mason is a company surfaced as a portfolio company of accel, ggv-capital, point-nine, y-combinator and added to the API Evangelist network as a stub for enrichment. Sector: ecommerce. This profile is a lead awaiting the enrichment pipeline.
+Mason (getmason.io), the company behind the ModeMagic Shopify app, is an AI-powered "agentic shopping engine" for ecommerce brands. Built by Kubric, the platform pairs merchandising, promotion, conversion and gamification AI agents with a developer platform for programmatic creative generation and commerce automation. Its public developer hub at getmason.dev documents a REST API (OAuth2 bearer, base host https://api.getmason.io) spanning app provisioning, template-driven image/creative generation (Genie), long-running creative tasks, asset search, webhook subscriptions, and a promotion/discount engine (Scrooge) for tiered, bulk and Buy-X-Get-Y discounts, plus a custom-checkout integration contract. Surfaced as a portfolio company of Accel, GGV Capital, Point Nine and Y Combinator; this profile was enriched by the API Evangelist pipeline from Mason's published OpenAPI, llms.txt and developer documentation.
 
-Backed by: accel, ggv-capital, point-nine, y-combinator — https://getmason.io/
+**Areas:** Company · E-Commerce · Commerce · Artificial Intelligence · Agents · Content Generation · Discounts · Promotions · Webhook · Shopify
+
+## Mason on APIs.io
+
+Everything profiled for Mason is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mason/](https://apis.io/providers/mason/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [Mason Apps API](https://apis.io/apis/mason/mason-apps-api/) — The Apps API from Mason — 2 operation(s) for apps.
+- [Mason Create Image API](https://apis.io/apis/mason/mason-create-image-api/) — The Create Image API from Mason — 1 operation(s) for create image.
+- [Mason Images API](https://apis.io/apis/mason/mason-images-api/) — The Images API from Mason — 2 operation(s) for images.
+- [Mason Retrieve an Image API](https://apis.io/apis/mason/mason-retrieve-an-image-api/) — The Retrieve an Image API from Mason — 1 operation(s) for retrieve an image.
+- [Mason Search API](https://apis.io/apis/mason/mason-search-api/) — The Search API from Mason — 1 operation(s) for search.
+- [Mason Template Mappings API](https://apis.io/apis/mason/mason-template-mappings-api/) — The Template Mappings API from Mason — 1 operation(s) for template mappings.
+- [Mason Tiered Discounts API](https://apis.io/apis/mason/mason-tiered-discounts-api/) — The Tiered Discounts API from Mason — 4 operation(s) for tiered discounts.
+- [Mason Webhooks API](https://apis.io/apis/mason/mason-webhooks-api/) — The Webhooks API from Mason — 2 operation(s) for webhooks.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Mason Webhooks](https://apis.io/asyncapis/mason/mason-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [mason](https://apis.io/servers/mason/mason/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Mason Agentic Access](https://apis.io/agentic-access/mason/mason-agentic-access/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Mason Apps API](https://apis.io/collections/mason/open-mason-apps-api/)
+- [Mason Apps Create Image API](https://apis.io/collections/mason/open-mason-create-image-api/)
+- [Mason Apps Images API](https://apis.io/collections/mason/open-mason-images-api/)
+- [Mason Apps Retrieve an Image API](https://apis.io/collections/mason/open-mason-retrieve-an-image-api/)
+- [Mason Apps Search API](https://apis.io/collections/mason/open-mason-search-api/)
+- [Mason Apps Template Mappings API](https://apis.io/collections/mason/open-mason-template-mappings-api/)
+- [Mason Apps Tiered Discounts API](https://apis.io/collections/mason/open-mason-tiered-discounts-api/)
+- [Mason Apps Webhooks API](https://apis.io/collections/mason/open-mason-webhooks-api/)
+
+#### Overlays (6)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Mason Apps Overlay](https://apis.io/overlays/mason/mason-apps-overlay/)
+- [Mason Discounts Overlay](https://apis.io/overlays/mason/mason-discounts-overlay/)
+- [Mason Generation Overlay](https://apis.io/overlays/mason/mason-generation-overlay/)
+- [Mason Search Overlay](https://apis.io/overlays/mason/mason-search-overlay/)
+- [Mason Tasks Overlay](https://apis.io/overlays/mason/mason-tasks-overlay/)
+- [Mason Webhooks Overlay](https://apis.io/overlays/mason/mason-webhooks-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mason Authentication](https://apis.io/security/mason/mason-authentication/)
+- [Mason Domain Security](https://apis.io/security/mason/mason-domain-security/)
+- [Mason Vulnerability Disclosure](https://apis.io/security/mason/mason-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Mason Scopes](https://apis.io/scopes/mason/mason-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Mason Plans Pricing](https://apis.io/plans/mason/mason-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://getmason.io/)
+- [Documentation](https://www.getmason.dev/)
+- [Getting started](https://www.getmason.dev/docs/getting-to-know-mason)
+- [API reference](https://www.getmason.dev/reference)
+- [Pricing](https://getmason.io/pricing/)
+- [Changelog](https://www.getmason.dev/changelog)
+- [Blog](https://getmason.io/feed/)
+- [Security](https://getmason.io/security/)
+- [Terms of service](https://getmason.io/termsofuse/)
+- [Privacy policy](https://getmason.io/privacypolicy/)
+- [GitHub](https://github.com/kubric)
+
+## API Evangelist rating
+
+**Kin Score 49.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 53.8 |
+| Contract governance | 4.5 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 35.1 |
+| Access clarity | 69.7 |
+
+**Agent readiness 31.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 37.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mason/](https://apis.io/providers/mason/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Mason: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mason/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
